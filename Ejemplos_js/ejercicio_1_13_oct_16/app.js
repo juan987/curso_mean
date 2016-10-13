@@ -26,3 +26,4 @@ function mi_funcion_con_let(){
 mi_funcion_con_var();
 mi_funcion_con_let();
 console.log("Adios mundo cruel!");
+console.log("Fin de la clase del 13 oct 2016");
