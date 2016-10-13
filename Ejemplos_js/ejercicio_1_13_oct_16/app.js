@@ -8,7 +8,7 @@ function mi_funcion_con_var(){
     for(var i = 0; i < 10; i++){
         console.log("valor de i al final:  " +i);
     }
-    console.log("valor de i al final:  " +i);
+    console.log("valor de i al final fuera:  " +i);
 
 }
 
