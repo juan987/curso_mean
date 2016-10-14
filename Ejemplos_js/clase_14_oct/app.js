@@ -138,3 +138,31 @@ console.log("\n Caso4");
 sumaMinimoDos(2,new Date(), "casa",3);
 console.log("\n Caso5");
 sumaMinimoDos(2,new Date(), "casa");
+
+console.log("\n Inicio ejemplos JS con Arrays");
+testConArrays();
+function testConArrays(){
+    let mi_array = new Array();
+    mi_array[0]=7;
+    mi_array[1]="valor";
+    mi_array.forEach(function(element) {
+        console.log("Elemento: " +element);
+    }, this);
+
+    let me_otro_array = [];
+    let otro = ["uno", 2, new Date()];
+
+
+    let array_asociativo = new Array();
+    array_asociativo["uno"] = 1;
+    console.log("array asociativo: " +array_asociativo["uno"]);
+
+    let persona = new Array();
+    persona.nombre = "Ruben";
+    persona.apellido1 = "Gomez";
+    //Asigno la funcion sumaMinimoDos en el array de manera asociativa
+    persona.sumaMinimoDos = sumaMinimoDos;
+    //Para ejecutar:
+    persona.sumaMinimoDos();//Muestra el error
+    console.log("\n Nombre co0mpleto = " +persona.nombre +", " +persona.apellido1);
+}
