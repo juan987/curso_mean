@@ -166,3 +166,35 @@ function testConArrays(){
     persona.sumaMinimoDos();//Muestra el error
     console.log("\n Nombre co0mpleto = " +persona.nombre +", " +persona.apellido1);
 }
+
+
+
+//Clase del 17 oct
+console.log("Clase 17 oct");
+function MiClase(campo1, campo2){
+    this.clave1 = campo1;
+    this.clave2 = campo2;
+}
+
+//Defino un prototipo dentro de MiClase
+MiClase.prototype.miMetodo = function(){
+    return this.clave1 + " - " +this.clave2;
+}
+var miObjeto = new MiClase("uno", "dos");
+console.log("El valor de la clave 1 es: " +miObjeto.clave1);
+console.log("Mi objeto tiene: " +miObjeto.miMetodo());
+
+//Ejercicio, hacer un prototype para array que me devuelva un objeto concreto
+Array.prototype.miMetodoContiene = function(objeto){
+    for (let i = 0; i < this.length; i++){
+        let elementoActual = this[i];
+        if(elementoActual == objeto){
+            return true;
+        }
+    }
+    return false;
+
+}
+console.log("Caso de uso de miMetodoContiene")
+let mi_array_de_prueba = [1,2,3,4,5];
+console.log(mi_array_de_prueba.miMetodoContiene(2));
