@@ -195,6 +195,20 @@ Array.prototype.miMetodoContiene = function(objeto){
     return false;
 
 }
-console.log("Caso de uso de miMetodoContiene")
+console.log("Caso de uso de miMetodoContiene");
 let mi_array_de_prueba = [1,2,3,4,5];
 console.log(mi_array_de_prueba.miMetodoContiene(2));
+
+console.log("Caso de uso de expresiones regulares");
+/texto a validar/.test("Si hay texto a validar entonces true");
+
+console.log("Caso de uso de array asociativo");
+let mi_info = {uno:1, dos:2, tres:3};//inicializador automatico de un array asociativo
+
+console.log("Caso de uso de array asociativo con array");
+let mi_info_con_array = [{uno:1, dos:2, tres:3}];//inicializador automatico de un array asociativo
+mi_info_con_array[0].dos;//...en la posicion 0 estoy pidiento lo que hay en la etiqueta dos
+
+console.log("Caso de uso de array asociativo con array 2");
+let mi_info_con_array_2 = [{uno:1, dos:2, tres:{uno:1, dos:2, tres:3}}, {uno:1, dos:2, tres:3}];//inicializador automatico de un array asociativo
+mi_info_con_array[0].tres.tres;//...en la posicion 0 estoy pidiento lo que hay en la etiqueta dos
