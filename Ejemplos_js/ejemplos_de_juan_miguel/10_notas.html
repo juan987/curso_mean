@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript">
+            var notas=new Array(); //creación de un objeto array
+            function guardar(){
+                //añadimos el valor contenido en la caja dato
+                //al array
+                notas.push(document.getElementById("nota").value);
+            }
+    
+            function media(){
+                var media=0;
+                for(var i=0;i<notas.length;i++){
+                    media+=parseFloat(notas[i]);
+                }
+                media=media/notas.length;
+                document.getElementById("res").innerHTML="Media: "+media;
+            }
+            function aprobados(){           
+                var aprobados=0;
+                
+                
+                for(var i=0;i<notas.length;i++){
+                    if(parseFloat(notas[i])>=5){
+                        aprobados++;
+                    }
+                }
+                document.getElementById("res").innerHTML="Aprobados "+aprobados;
+                
+            }
+            
+        </script>
+</head>
+<body>
+	Nota:<input type="text" id="nota" />
+        <input type="button" value="guardar" onclick="guardar();"/><br/>
+        
+        <input type="button" value="Media" onclick="media();"/>
+        <input type="button" value="Aprobados" onclick="aprobados();"/>
+        <br/>
+        <div id="res">
+            
+        </div>
+</body>
+</html>

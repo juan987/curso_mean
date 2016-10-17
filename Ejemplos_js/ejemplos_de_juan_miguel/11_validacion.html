@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function validar(){
+		//recogemos el contenido de la caja
+		var caja=document.getElementById("nom").value;
+		//comprobamos si se ha escrito algo
+		if(caja==""){
+			alert("debe escribir un nombre!!");
+			return false;
+		}
+		else{
+			if(!comprobar(caja)){
+				alert("debe contener la r");
+				return false;
+			}else{
+				return true;
+			}
+			
+		}
+	}
+	function comprobar(nombre){
+		//calcula la posición de la letra dentro del texto
+		//si es -1, la letra no está
+		if(nombre.indexOf("r")!=-1){
+			return true; //contiene la letra
+		}else{
+			return false;//no contiene la letra
+		}
+	}
+</script>
+</head>
+<body>
+	<form action="procesar" method="post" onsubmit="return validar();">
+		Nombre:<input type="text" name="nom" id="nom"/><br/>
+		<input type="submit" value="Enviar"/>		
+	</form>
+</body>
+</html>

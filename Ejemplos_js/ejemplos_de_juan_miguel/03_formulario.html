@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>Formulario de registro</h1>
+<form action="capturador" method="get">
+	Nombre:<input type="text" name="nombre" required="required"/><br/>
+	Contraseña:<input type="password" name="pwd" placeholder="contraseña"><br/>
+	Sexo:<input type="radio" value="h" name="s"/>Hombre<br/>
+	<input type="radio" value="m" name="s"/>Mujer<br/>
+	Opciones:<input type="checkbox" name="opt" value="musica"/>Música<br/>
+	<input type="checkbox" name="opt" value="cine"/>Cine<br/>
+	<input type="checkbox" name="opt" value="libros"/>Libros<br/>
+	<!-- lista abierta de selección múltiple -->
+	Lugar:<select name="zona" size="2" multiple="multiple">
+		<option value="sur">Sevilla</option>
+		<option value="centro">Madrid</option>
+		<option value="norte">Burgos</option>
+	</select>
+	<br/>
+	<input type="submit" value="Enviar"/>
+	<input type="reset" value="Limpiar"/>
+</form>
+</body>
+</html>

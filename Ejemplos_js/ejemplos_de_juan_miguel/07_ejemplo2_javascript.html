@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script type="text/javascript">
+	function saludar(){
+		var a,b;
+		//guardamos el objeto etiqueta en la variable
+		a=document.getElementById("cajaNombre");
+		//accedemos al contenido de la caja
+		//a partir de su propiedad value
+		//alert("saludo de "+a.value);
+		//recuperamos el objeto div
+		b=document.getElementById("res");
+		//modificamos contenido de la etiqueta
+		b.innerHTML="<b>Bienvenido "+a.value+"</b>";
+	}
+</script>
+</head>
+<body>
+
+	Nombre: <input type="text" id="cajaNombre"/>
+	<br/>
+	<input type="button" value="saludar" onclick="saludar();"/>
+	<br/>
+	<br/>
+	<div id="res">
+	
+	</div>
+</body>
+</html>

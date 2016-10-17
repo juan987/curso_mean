@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+</head>
+<body>
+<h1>Formulario de pedidos</h1>
+<form action="pedido" method="get">
+	<div style="position: absolute;left: 100px;top:100px">
+		Memoria:<br/>
+		<select name="precioMemoria">
+			<option value="100">8GB</option>
+			<option value="150">16GB</option>
+			<option value="200">32GB</option>
+		</select>
+	</div>
+	<br/>
+	<div style="position: absolute;left: 500px;top:100px">
+		Accesorios:<br/>
+		<input type="checkbox" name="acc" value="120"/>Impresora<br/>
+		<input type="checkbox" name="acc" value="180"/>Monitor 27<br/>
+	</div>
+	<div style="position: absolute;left: 200px;top:250px">
+		Pago:<br/>
+		<input type="radio" name="pago" value="0"/>Tarjeta<br/>
+		<input type="radio" name="pago" value="1"/>pypal<br/>
+		<br/>
+		<input type="submit" value="Enviar"/>
+	</div>
+</form>
+
+
+</body>
+</html>
