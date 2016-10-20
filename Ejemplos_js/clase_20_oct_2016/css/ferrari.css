@@ -1,0 +1,148 @@
+/* Contenedor */
+body {
+    background: green;
+    color: white;
+    font: sans-serif 14px;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.5)
+}
+
+#contenedor {
+    background: blue;
+    /* indica margenes top-bottom y left-right
+    Si indico el segundo como auto, le estoy indicando que se centre */
+    margin: 0 auto;
+    /* si deseo no ocupar todo el ancho, puedo indicar los limites */
+    max-width: 1000px;
+    /* en vez de introducir un margen a cada elemento dentro del contenedor,
+    defino un border y consigo el mismo efecto */
+    border: 5px solid yellow;
+    border-radius: 5px;
+}
+
+
+/* estilos de header y footer principales */
+
+section#contenedor > header, section#contenedor > footer {
+    background: red;
+    border-radius: 5px;
+}
+
+/* para el header con id cabecera y con hijos section */
+header#cabecera > section{
+    /* todos los elementos de la misma linea */
+    display: inline-block;
+    font-size: 2em;
+    /* centramos uno respecto a otro */
+    vertical-align: middle;
+    margin: 10px;
+
+}
+
+footer#pie > section{
+    padding-right: 10px;
+    text-align: right;
+}
+
+section#contenedor > section, nav#MigaDePan {
+    background:  white;
+        border-radius: 5px;
+        color:  black;
+        font-size:  15px;
+        margin: 5px 5px;
+        padding: 10px;
+
+
+}
+
+h2 {
+    text-align: center;
+}
+
+section#contenedor > section#lateral {
+    /* ancho en % */
+    width: 20%;
+    min-width: 150px;
+    float: left;
+}
+
+section#contenedor > section#lateral a{
+text-decoration: none;
+color: white;
+}
+
+section ul{
+    padding: 0px;
+    box-shadow: 5px 5px 0 #333;
+}
+
+section ul li{
+    display: block;
+    background: rgba(0, 0, 0, 0.5); 
+    padding: 0px;
+}
+
+section#contenedor > section#principal {
+    background: red;
+    margin-left: 24%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+
+/* directivas y media queries con condicion.
+Cuando esto pase, cambio el comportamiento */
+@media screen and (max-width: 400px){
+    header#cabecera > section{
+        /* todos los elementos de la misma linea */
+        display: block;
+        text-align: center;
+    }
+
+    h1{
+        margin: 0px;
+    }
+
+    section#contenedor > section#principal {
+    background: blue;
+    margin: 5 px 0px;
+    }
+
+    section#contenedor > section#lateral{
+    margin: 5 px 0px;
+    float:  none;
+    width: auto;
+    }
+}
+
+    @media screen and (max-width: 800px){
+
+
+    section#contenedor > section#principal {
+    width: 185;
+    }
+
+    section#contenedor > section#lateral{
+    width: 150;
+    }
+}
+
+/* Imagen pequeña */
+
+#detalle img {
+
+    position: fixed;
+    bottom: 20px;
+    left: 20px;
+
+}
+
+    @media screen and (max-width: 1200px){
+
+
+        #detalle img {
+
+            display: none;
+
+        }
+
+    }
