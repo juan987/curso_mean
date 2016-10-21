@@ -5,6 +5,6 @@ function presionarBotonConJquery(){
 }
 
 function inicializarEventosConJquery(){
-    $("botonjquery1").click(presionarBotonConJquery);
-    $("botonjquery2").click(presionarBotonConJquery);
+    $("#botonjquery1").click(presionarBotonConJquery);
+    $("#botonjquery2").click(presionarBotonConJquery);
 }

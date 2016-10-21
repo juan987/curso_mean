@@ -24,10 +24,10 @@ function inicializarEventos(){
     addEvent(botonjs1, 'click', presionarBotonConJavaScript, false);
 
     let botonjs2 = document.getElementById("botonjs2");
-    addEvent(botonjs1, 'click', presionarBotonConJavaScript, false);
+    addEvent(botonjs2, 'click', presionarBotonConJavaScript, false);
 }
 
 
-function presionarBotonConJavaScript(e){
+function presionarBotonConJavaScript(){
     alert("Boton con javascript pulsado");
 }
