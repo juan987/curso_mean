@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Calculadora javascript</title>
+    <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script type="text/javascript" src="js/calculadora-controlador.js"></script>
+</head>
+<body onload="cargar();">
+    <input type="text" id="pantalla" name="display"/>
+    <br/><input type="button" value="1" onclick="deliverNumber(1);"/>
+    <input type="button" value="+" onclick="sumar();"/>
+    <br/><input type="button" value="=" onclick="igual();"/>
+    <br/><input type="button" value="Clear" onclick="clear();"/>
+</body>
+</html>
