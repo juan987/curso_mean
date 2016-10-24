@@ -129,5 +129,15 @@
                 memoria = undefined;            
             break;
         }
-
     }
+
+        function borrarMemoria(){
+            memoria = undefined;
+        }
+
+        function mostrarMemoria(){
+            numeroEnDisplay = memoria;
+            actualizaDisplay(numeroEnDisplay);
+        }
+
+    

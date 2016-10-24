@@ -32,13 +32,21 @@
         <input class="teclaOperacion" type="button" value="*" onclick="multiplicar();"/>
     </div><br/>
     <div class="fila">
-        <input class="teclaOperacion" type="button" value="CM" onclick="#"/>
+        <input class="teclaOperacion" type="button" value="CM" onclick="borrarMemoria();"/>
         <input class="teclaNumnero" type="button" value="0" onclick="dibujarDisplay(0);"/>
-        <input class="teclaOperacion" type="button" value="VM" onclick="#"/>
+        <input class="teclaOperacion" type="button" value="VM" onclick="mostrarMemoria();"/>
         <input class="teclaOperacion" type="button" value="/" onclick="dividir();"/>
     </div>
     <br/><input type="button" value="=" onclick="resultado();"/><br/>
     <br/><input type="button" value="Clear" onclick="mi_clear();"/>
+
+    <div class="instrucciones">
+        <p>La tecla "clear"" limpia la pantalla y la memoria
+        <p>La tecla "CM" borra la memoria
+        <p>La tecla "VM" muestra la memoria
+
+    </div>
+
 
 </body>
 </html>
