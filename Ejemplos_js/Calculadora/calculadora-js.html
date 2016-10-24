@@ -12,26 +12,32 @@
 <body onload="cargar();">
     <h1>Calculadora con memoria y Java Script</h1>
 
-    <input type="text" id="pantalla" name="display"/><br/>
+    <input type="text" id="pantalla" name="display"/><br/><br/>
     <div class="fila">
         <input class="teclaNumnero" type="button" value="1" onclick="dibujarDisplay(1);"/>
         <input class="teclaNumnero" type="button" value="2" onclick="dibujarDisplay(2);"/>
         <input class="teclaNumnero" type="button" value="3" onclick="dibujarDisplay(3);"/>
         <input class="teclaOperacion" type="button" value="+" onclick="sumar();"/>
-    </div>
+    </div><br/>
     <div class="fila">
         <input class="teclaNumnero" type="button" value="4" onclick="dibujarDisplay(4);"/>
         <input class="teclaNumnero" type="button" value="5" onclick="dibujarDisplay(5);"/>
         <input class="teclaNumnero" type="button" value="6" onclick="dibujarDisplay(6);"/>
         <input class="teclaOperacion" type="button" value="-" onclick="restar();"/>
-    </div>
+    </div><br/>
     <div class="fila">
         <input class="teclaNumnero" type="button" value="7" onclick="dibujarDisplay(7);"/>
         <input class="teclaNumnero" type="button" value="8" onclick="dibujarDisplay(8);"/>
         <input class="teclaNumnero" type="button" value="9" onclick="dibujarDisplay(9);"/>
         <input class="teclaOperacion" type="button" value="*" onclick="multiplicar();"/>
+    </div><br/>
+    <div class="fila">
+        <input class="teclaOperacion" type="button" value="n" onclick="#"/>
+        <input class="teclaNumnero" type="button" value="0" onclick="dibujarDisplay(0);"/>
+        <input class="teclaOperacion" type="button" value="n" onclick="#"/>
+        <input class="teclaOperacion" type="button" value="/" onclick="dividir();"/>
     </div>
-    <br/><input type="button" value="=" onclick="igual();"/>
+    <br/><input type="button" value="=" onclick="resultado();"/><br/>
     <br/><input type="button" value="Clear" onclick="mi_clear();"/>
 
 </body>

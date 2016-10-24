@@ -4,20 +4,17 @@
     var mi_calculadora;
     var bool_operacion_clicked;
     var bool_estado_inicial;
+    var operacionClickada;
 	function cargar(){
 		pantalla=document.getElementById("pantalla");
         numeroEnDisplay = "";
-        memoria = 0;
         mi_calculadora = new MiCalculadora;
         bool_operacion_clicked = false;
         bool_estado_inicial = true;
 	}
 
+//Esta funcion se llama cuando se clicka un numero
     function dibujarDisplay(numero){
-        if(bool_operacion_clicked){
-            numeroEnDisplay = "";
-            bool_operacion_clicked = false;
-        }
         numeroEnDisplay += numero;
         actualizaDisplay(numeroEnDisplay);
     }
@@ -29,55 +26,108 @@
 
     function sumar(){
         //alert("sumar");
-        if(bool_estado_inicial){
-            bool_estado_inicial = false;
-        }
-        if(!bool_operacion_clicked){
-            bool_operacion_clicked = true;
-            memoria = mi_calculadora.sumar(parseInt(numeroEnDisplay),memoria);
-            actualizaDisplay(memoria);
+
+        operacionClickada = "+";
+        //Guardo lo que hay en pantalla en la var memoria y limpio la pantalla
+        if(memoria === undefined){
+            memoria = pantalla.value;
+            numeroEnDisplay = "";
+            actualizaDisplay(numeroEnDisplay);
+        }else{
+            //Hay algo en memoria, ejecuta segun la operacion clickada
+            //resultado();
+
         }
 
     }
 
-        function restar(){
+    function restar(){
         //alert("restar");
-        if(bool_estado_inicial){
-            bool_estado_inicial = false;
-        }
-            if(!bool_operacion_clicked){
-                bool_operacion_clicked = true;
-                //memoria = mi_calculadora.restar(parseInt(numeroEnDisplay),memoria);
-                memoria = mi_calculadora.restar(memoria, parseInt(numeroEnDisplay));
-                actualizaDisplay(memoria);
-            }
+        operacionClickada = "-";
+        //Guardo lo que hay en pantalla en la var memoria y limpio la pantalla
+        if(memoria === undefined){
+            memoria = pantalla.value;
+            numeroEnDisplay = "";
+            actualizaDisplay(numeroEnDisplay);
+        }else{
+            //Hay algo en memoria, ejecuta segun la operacion clickada
+            //resultado();
 
-    }
-
-        function multiplicar(){
-        //alert("multiplicar");
-        if(bool_estado_inicial){
-            memoria = 1;
-            bool_estado_inicial = false;
-        }
-        if(!bool_operacion_clicked){
-            bool_operacion_clicked = true;
-            //memoria = mi_calculadora.restar(parseInt(numeroEnDisplay),memoria);
-            memoria = mi_calculadora.multiplicar(memoria, parseInt(numeroEnDisplay));
-            actualizaDisplay(memoria);
         }
 
     }
 
+    function multiplicar(){
+        //alert("restar");
+        operacionClickada = "*";
+        //Guardo lo que hay en pantalla en la var memoria y limpio la pantalla
+        if(memoria === undefined){
+            memoria = pantalla.value;
+            numeroEnDisplay = "";
+            actualizaDisplay(numeroEnDisplay);
+        }else{
+            //Hay algo en memoria, ejecuta segun la operacion clickada
+            //resultado();
 
+        }
 
-    function igual(){
-        window.alert("igual");    
     }
 
+    function dividir(){
+        //alert("restar");
+        operacionClickada = "/";
+        //Guardo lo que hay en pantalla en la var memoria y limpio la pantalla
+        if(memoria === undefined){
+            memoria = pantalla.value;
+            numeroEnDisplay = "";
+            actualizaDisplay(numeroEnDisplay);
+        }else{
+            //Hay algo en memoria, ejecuta segun la operacion clickada
+            //resultado();
+
+        }
+
+    }
+
+//Llamada al clickar el boton clear
     function mi_clear(){
-        alert("metodo clear");       
-        //actualizaDisplay(0);
-        //actualizaMemoria(0);
+        //alert("metodo clear");       
+        numeroEnDisplay = "";
+        actualizaDisplay(numeroEnDisplay);
+        memoria = undefined;
+
+    }
+
+
+// Esta funcion es llamada cuando clickamos la tecla = (igual)
+    function resultado(){
+        console.log("funcion resultado")
+        switch (operacionClickada) {
+            case "+":
+                console.log("funcion resultado, sumar")
+                memoria = mi_calculadora.sumar(parseInt(memoria),
+                                                    parseInt(numeroEnDisplay));
+                actualizaDisplay(memoria);
+                memoria = undefined;            
+            break;
+            case "-":
+                memoria = mi_calculadora.restar(parseInt(memoria),
+                                                    parseInt(numeroEnDisplay));
+                actualizaDisplay(memoria);
+                memoria = undefined;            
+            break;
+            case "*":
+                memoria = mi_calculadora.multiplicar(parseInt(memoria),
+                                                    parseInt(numeroEnDisplay));
+                actualizaDisplay(memoria);
+                memoria = undefined;            
+            break;
+            case "/":
+                memoria = mi_calculadora.dividir(parseInt(memoria),
+                                                    parseInt(numeroEnDisplay));
+                actualizaDisplay(memoria);
+                memoria = undefined;            
+            break;
+        }
 
     }
