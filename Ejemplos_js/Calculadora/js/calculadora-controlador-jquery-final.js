@@ -1,3 +1,4 @@
+//Declaro variables globales
 	var pantalla;
     var numeroEnDisplay;
     //var mi_calculadora.memoria;
@@ -5,7 +6,28 @@
     var bool_operacion_clicked;
     var bool_estado_inicial;
     var operacionClickada;
-	function cargar(){
+
+
+$(document).ready(initializeEvents);
+
+function initializeEvents(){
+    cargar();
+    $(".teclaNumnero").click(dibujarDisplay);
+    $(".teclaOperacion").click(teclaOperDosNumeros);
+}
+
+
+
+function addElementClass(){
+    $("#descripcion").addClass("recuadro");
+}
+
+function removeElementClass(){
+    $("#descripcion").removeClass("recuadro");
+}
+
+    //Ejecutar la funcion cargar para inicializar variables y el objeto calculadora
+    function cargar(){
 		pantalla=document.getElementById("pantalla");
         numeroEnDisplay = "";
         mi_calculadora = new MiCalculadora;
