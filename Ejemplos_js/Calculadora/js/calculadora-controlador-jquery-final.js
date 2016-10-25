@@ -18,6 +18,9 @@ function initializeEvents(){
     $("#teclaMostrarMemoria").click(mostrarMemoria);
     $("#teclaIgual").click(resultado);
     $("#teclaClear").click(mi_clear);
+    $("#teclaRetroceder").click(retroceder);
+
+    
 
 
 
@@ -55,7 +58,7 @@ function removeElementClass(){
         bool_estado_inicial = true;
 	}
 
-//Esta funcion se llama cuando se clicka un numero
+//Esta funcion se llama cuando se clicka un numero y utiliza actualizaDisplay para mostrar el dato en pantalla
     function dibujarDisplay(){
         if(this.value == "+/-"){
             numeroEnDisplay += "-";           
@@ -140,7 +143,7 @@ function removeElementClass(){
         actualizaDisplay(numeroEnDisplay);
     }
 
-    //Esta funcion se llama cuando se pulsa las teclas: +,-,*,/
+    //Esta funcion se llama cuando se pulsa las teclas: +,-,*,/, 1/x, %, raizCuadrada
     //function teclaOperDosNumeros(operador){
     function teclaOperDosNumeros(){
         let operador = this.value;
@@ -186,5 +189,13 @@ function removeElementClass(){
         }else{
             //No lo uso por ahora
 
+        }
+    }
+
+//Funcion para borrar el ultimo numero tecleado o el punto decimal o el menos
+    function retroceder(){
+        if(numeroEnDisplay.length != 0){
+            numeroEnDisplay = numeroEnDisplay.slice(0,numeroEnDisplay.length - 1);
+            actualizaDisplay(numeroEnDisplay);
         }
     }
