@@ -36,4 +36,17 @@ MiCalculadora.prototype.multiplicar = function(num1,num2){
 
 MiCalculadora.prototype.dividir = function(num1,num2){
         return num1/num2;
-    }
+}
+
+MiCalculadora.prototype.inverso = function(num){
+        return 1/num;
+}
+
+MiCalculadora.prototype.raizCuadrada = function(num){
+        return Math.sqrt(num);
+}
+
+//Haqy que teclear: numero(porcentaje a calcular) +tecla% +numero
+MiCalculadora.prototype.porcentaje = function(num, porc){
+        return num*porc/100;
+}

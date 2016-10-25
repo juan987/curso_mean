@@ -1,4 +1,4 @@
-.teclaNumnero{
+.teclaNumnero, .teclasMemoria, #teclaClear{
     background-color: #ff0000;
     color: white;
     padding: 15px 32px;
@@ -10,6 +10,7 @@
     cursor: pointer;
 }
 
+/* .numeroClickado es para resaltar la tecla del numero clickado */
 .numeroClickado{
     background-color: #9CAF50;
     border: none;
@@ -36,10 +37,10 @@ input[type=text] {
 }
 
 .teclaFake{
-    visibility: hidden;
+    visibility: visible;
 }
 
-.teclaOperacion{
+.teclaOperacion,  #teclaIgual{
     background-color: #ff0000;
     color: white;
     padding: 15px 62px;

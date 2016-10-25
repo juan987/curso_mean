@@ -57,7 +57,12 @@ function removeElementClass(){
 
 //Esta funcion se llama cuando se clicka un numero
     function dibujarDisplay(){
-        numeroEnDisplay += this.value;
+        if(this.value == "+/-"){
+            numeroEnDisplay += "-";           
+        }else
+        {
+            numeroEnDisplay += this.value;
+        }
         actualizaDisplay(numeroEnDisplay);
     }
 
@@ -107,6 +112,22 @@ function removeElementClass(){
                 actualizaDisplay(mi_calculadora.memoria);
                 mi_calculadora.memoria = undefined;            
             break;
+            case "raiz2":
+                mi_calculadora.memoria = mi_calculadora.raizCuadrada(parseFloat(numeroEnDisplay));
+                actualizaDisplay(mi_calculadora.memoria);
+                mi_calculadora.memoria = undefined;            
+            break;
+            case "%":
+                mi_calculadora.memoria = mi_calculadora.porcentaje(parseFloat(mi_calculadora.memoria),
+                                                    parseFloat(numeroEnDisplay));
+                actualizaDisplay(mi_calculadora.memoria);
+                mi_calculadora.memoria = undefined;            
+            break;
+            case "1/x":
+                mi_calculadora.memoria = mi_calculadora.inverso(parseFloat(numeroEnDisplay));
+                actualizaDisplay(mi_calculadora.memoria);
+                mi_calculadora.memoria = undefined;            
+            break;
         }
     }
 
@@ -136,6 +157,21 @@ function removeElementClass(){
             break;
             case "/":
                 funcionOperador(operador);
+            break;
+            case "raiz2":
+                operacionClickada = operador; 
+                mi_calculadora.memoria = mi_calculadora.raizCuadrada(parseFloat(numeroEnDisplay));
+                actualizaDisplay(mi_calculadora.memoria);
+                mi_calculadora.memoria = undefined;            
+            break;
+            case "%":
+                funcionOperador(operador);       
+            break;
+            case "1/x":
+                operacionClickada = operador; 
+                mi_calculadora.memoria = mi_calculadora.inverso(parseFloat(numeroEnDisplay));
+                actualizaDisplay(mi_calculadora.memoria);
+                mi_calculadora.memoria = undefined;            
             break;
         }
     }
