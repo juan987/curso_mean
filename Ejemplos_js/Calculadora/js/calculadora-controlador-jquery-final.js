@@ -14,7 +14,27 @@ function initializeEvents(){
     cargar();
     $(".teclaNumnero").click(dibujarDisplay);
     $(".teclaOperacion").click(teclaOperDosNumeros);
-}
+    $("#teclaBorrarMemoria").click(borrarMemoria);
+    $("#teclaMostrarMemoria").click(mostrarMemoria);
+    $("#teclaIgual").click(resultado);
+    $("#teclaClear").click(mi_clear);
+
+
+
+
+
+$( ".teclaNumnero" )
+  .mouseup(function() {
+    $( this ).removeClass( "numeroClickado" );
+    $( this ).addClass( "teclaNumnero" );
+
+  })
+  .mousedown(function() {
+    $( this ).removeClass( "teclaNumnero" );
+    $( this ).addClass( "numeroClickado" );
+  });
+
+}//Fin de initializeEvents
 
 
 
@@ -90,17 +110,19 @@ function removeElementClass(){
         }
     }
 
-        function borrarMemoria(){
-            mi_calculadora.memoria = undefined;
-        }
+    function borrarMemoria(){
+        mi_calculadora.memoria = undefined;
+    }
 
-        function mostrarMemoria(){
-            numeroEnDisplay = mi_calculadora.memoria;
-            actualizaDisplay(numeroEnDisplay);
-        }
+    function mostrarMemoria(){
+        numeroEnDisplay = mi_calculadora.memoria;
+        actualizaDisplay(numeroEnDisplay);
+    }
 
     //Esta funcion se llama cuando se pulsa las teclas: +,-,*,/
-    function teclaOperDosNumeros(operador){
+    //function teclaOperDosNumeros(operador){
+    function teclaOperDosNumeros(){
+        let operador = this.value;
         console.log("teclaOperDosNumeros")
         switch (operador) {
             case "+":

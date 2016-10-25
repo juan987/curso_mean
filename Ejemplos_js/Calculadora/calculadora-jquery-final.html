@@ -3,54 +3,61 @@
 <head>
     <meta charset="UTF-8">
     <title>Calculadora Jquery</title>
+    <link rel="stylesheet" href="css/calculadora-jquery.css" type="text/css"/>
     <script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script>
-    <script type="text/javascript" src="js/calculadora_js-controlador-final.js"></script>
+    <script type="text/javascript" src="js/calculadora-controlador-jquery-final.js"></script>
     <script type="text/javascript" src="js/cal_logica_de_negocio.js"></script>
 
     
 </head>
 <body>
     <h2>Calculadora compleja con memoria, Jquery y CSS3</h2>
-    <div id="instrucciones">
+    <article id="instrucciones">
         <p>Secuencia de uso: teclear numero, teclear operando, teclear igual.</p>
         <p>A continuacion: clear o tecla operando y siguiente numero.
 
-    </div>
+    </article>
 
-    <input type="text" id="pantalla" name="display"/><br/><br/>
-    <div class="fila">
-        <input class="teclaNumnero" type="button" value="1" />
-        <input class="teclaNumnero" type="button" value="2" />
-        <input class="teclaNumnero" type="button" value="3" onclick="dibujarDisplay(3);"/>
-        <input class="teclaOperacion" type="button" value="+" onclick="teclaOperDosNumeros('+');"/>
-    </div><br/>
-    <div class="fila">
-        <input class="teclaNumnero" type="button" value="4" onclick="dibujarDisplay(4);"/>
-        <input class="teclaNumnero" type="button" value="5" onclick="dibujarDisplay(5);"/>
-        <input class="teclaNumnero" type="button" value="6" onclick="dibujarDisplay(6);"/>
-        <input class="teclaOperacion" type="button" value="-" onclick="teclaOperDosNumeros('-');"/>
-    </div><br/>
-    <div class="fila">
-        <input class="teclaNumnero" type="button" value="7" onclick="dibujarDisplay(7);"/>
-        <input class="teclaNumnero" type="button" value="8" onclick="dibujarDisplay(8);"/>
-        <input class="teclaNumnero" type="button" value="9" onclick="dibujarDisplay(9);"/>
-        <input class="teclaOperacion" type="button" value="*" onclick="teclaOperDosNumeros('*');"/>
-    </div><br/>
-    <div class="fila">
-        <input id="teclaBorrarMemoria" type="button" value="CM" onclick="borrarMemoria();"/>
-        <input class="teclaNumnero" type="button" value="0" onclick="dibujarDisplay(0);"/>
-        <input class="teclaMostrarMemoria" type="button" value="VM" onclick="mostrarMemoria();"/>
-        <input class="teclaOperacion" type="button" value="/" onclick="teclaOperDosNumeros('/');"/>
-    </div>
-    <br/><input id="teclaIgual" type="button" value="=" onclick="resultado();"/><br/>
-    <br/><input id="teclaClear" type="button" value="Clear" onclick="mi_clear();"/>
+    <section id="cuerpoCalculadora">
+        <input type="text" id="pantalla" name="display"/><br/><br/>
+        <article class="fila">
+            <input class="teclaNumnero" type="button" value="1" />
+            <input class="teclaNumnero" type="button" value="2" />
+            <input class="teclaNumnero" type="button" value="3" />
+            <input class="teclaOperacion" type="button" value="+" />
+        </article><br/>
+        <article class="fila">
+            <input class="teclaNumnero" type="button" value="4" />
+            <input class="teclaNumnero" type="button" value="5" />
+            <input class="teclaNumnero" type="button" value="6" />
+            <input class="teclaOperacion" type="button" value="-" />
+        </article><br/>
+        <article class="fila">
+            <input class="teclaNumnero" type="button" value="7" />
+            <input class="teclaNumnero" type="button" value="8" />
+            <input class="teclaNumnero" type="button" value="9" />
+            <input class="teclaOperacion" type="button" value="*" />
+        </article><br/>
+        <article class="fila">
+            <input class="teclaNumnero teclaFake" type="button" value="0" />
+            <input class="teclaNumnero" type="button" value="0" />
+            <input class="teclaNumnero teclaFake" type="button" value="0" />
+            <input class="teclaOperacion" type="button" value="/" />
+        </article>
+        <article class="fila">
+            <input id="teclaBorrarMemoria" type="button" value="CM" />
+            <input id="teclaMostrarMemoria" type="button" value="VM" />
+        </article>
+        <br/><input id="teclaIgual" type="button" value="=" /><br/>
+        <br/><input id="teclaClear" type="button" value="Clear" />
+    </section>
 
-    <div id="instrucciones">
+    <article id="instrucciones">
         <p>Notas:</p>
         <p>La tecla "clear"" limpia la pantalla y la memoria</p>
         <p>La tecla "CM" borra la memoria</p>
         <p>La tecla "VM" muestra la memoria</p>
-    </div>
+    </article>
 
 
 </body>
