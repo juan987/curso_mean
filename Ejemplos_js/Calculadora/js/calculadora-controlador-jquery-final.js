@@ -36,8 +36,8 @@ function removeElementClass(){
 	}
 
 //Esta funcion se llama cuando se clicka un numero
-    function dibujarDisplay(numero){
-        numeroEnDisplay += numero;
+    function dibujarDisplay(){
+        numeroEnDisplay += this.value;
         actualizaDisplay(numeroEnDisplay);
     }
 
