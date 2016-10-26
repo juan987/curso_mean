@@ -20,7 +20,7 @@ function initializeEvents(){
     $("#teclaClear").click(mi_clear);
     $("#teclaRetroceder").click(retroceder);
 
-    
+    $("#boton1").click(toggleBox);
 
 
 
@@ -40,6 +40,9 @@ $( ".teclaNumnero" )
 }//Fin de initializeEvents
 
 
+function toggleBox(){
+    $("#instrucciones").toggle("slow");
+}
 
 function addElementClass(){
     $("#descripcion").addClass("recuadro");
