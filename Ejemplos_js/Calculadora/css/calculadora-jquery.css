@@ -1,5 +1,13 @@
+#cuerpoCalculadora{
+    background-color: darkgrey;
+    width: auto;
+    vertical-align: middle;
+}
+
+
+
 .teclaNumnero, .teclasMemoria, #teclaClear{
-    background-color: #ff0000;
+    background-color: black;
     color: white;
     padding: 15px 32px;
     text-align: center;
@@ -12,7 +20,7 @@
 
 /* .numeroClickado es para resaltar la tecla del numero clickado */
 .numeroClickado{
-    background-color: #9CAF50;
+    background-color: dimgray;
     border: none;
     color: white;
     padding: 15px 32px;
