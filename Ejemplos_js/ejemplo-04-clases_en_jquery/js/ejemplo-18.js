@@ -1,7 +1,8 @@
 $(document).ready(initializeEvents);
 
 function initializeEvents(){
-    $("#peticion_ajax").click(peticionAjaxGenerica);
+    //$("#peticion_ajax").click(peticionAjaxGenerica);
+    peticionAjaxGenerica();
 
 }
 
@@ -31,6 +32,19 @@ function peticionCompletada(data, status, jqXHR){
     $("#contenido_de_ajax").html("<p>hola soy juan</p>");
     for(i in data){
         $("#contenido_de_ajax").append(data[i].username +"<br/>");
+        $("tbody").append("<tr>" 
+            +"<td>" +data[i].id +"</td>" 
+            +"<td>" +data[i].name +"</td>" 
+            +"<td>" +data[i].username +"</td>" 
+            +"<td>" +data[i].email +"</td>" 
+            //+"<td>" +data[i].address +"</td>"
+
+            //address es un objeto json, hago stringify para poder inprimirlo en la columna address 
+            +"<td>" +JSON.stringify(data[i].address) +"</td>" 
+            //JSON.stringify(object)
+            //Para pasar un string a un objeto json
+            //  JSON.parse(string)
+        +"</tr>)");//Fin del append
     }
     alert("Peticion completada con status: " +status +" : " +data);
 }
