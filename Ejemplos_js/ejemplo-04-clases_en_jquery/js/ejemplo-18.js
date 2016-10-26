@@ -27,10 +27,10 @@ function peticionAjaxGenerica(){
 
 //data es lo nos devuelve el servidor
 function peticionCompletada(data, status, jqXHR){
-    $("#contenido_de_ajax").html(data[0].username);
+    //$("#contenido_de_ajax").html(data[0].username);
     $("#contenido_de_ajax").html("<p>hola soy juan</p>");
     for(i in data){
-        $("#contenido_de_ajax").html(data[i].username);
+        $("#contenido_de_ajax").append(data[i].username +"<br/>");
     }
     alert("Peticion completada con status: " +status +" : " +data);
 }
