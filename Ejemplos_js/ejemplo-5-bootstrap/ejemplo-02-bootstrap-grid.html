@@ -56,7 +56,7 @@
             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">3</div>
             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">4</div>
         </div>
-        <h2>En multidispositivo con clearfix</h2>
+        <h2>En multidispositivo con clearfix, quita huecos entre las cajas</h2>
         <div class="row">
             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">1 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Veritatis, vero sunt aperiam placeat tenetur corporis molestias.  </div>
             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">2</div>
@@ -65,12 +65,28 @@
             <div class="clearfix visible-sm-block"></div>
             <div class="col-xs-12 col-sm-6 col-md-4 col-lg-3">4</div>
         </div>
-        <h2>Huecos con offset</h2>
+        <h2>Huecos con offset: agrega el offset de tantas celdas antes de la caja donde aplica</h2>
         <div class="row">
             <div class="col-md-4">.col-md-4</div>
-            <div class="col-md-4 col-md-offset-4">.col-md-4</div>
-
+            <div class="col-md-4 col-md-offset-4">.col-md-4 .col-md-offset-4</div>
         </div>
+
+        <h2>Otros ejemplo de offset</h2>
+        <div class="row">
+            <div class="col-md-3 col-md-offset-3">.col-md-3 .col-md-offset-3</div>
+            <div class="col-md-3 col-md-offset-3">.col-md-3 .col-md-offset-3</div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">.col-md-3 .col-md-offset-3 </div>
+        </div>
+
+        <h2>Push and pull</h2>
+        <div class="row">
+            <div class="col-md-9 col-md-push-3">.col-md-9 .col-md-push-3</div>
+            <div class="col-md-3 col-md-pull-9">.col-md-3 .col-md-pull-9</div>
+        </div>
+
     </div>
 
 </body>
