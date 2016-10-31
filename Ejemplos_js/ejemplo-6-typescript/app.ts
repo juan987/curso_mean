@@ -54,7 +54,8 @@ class Persona{
 
     }
 
-    //Metodos de la clases
+    //Metodos de la clases, :string es que devuelve un string. 
+    //Si fuera :void es que no devuelve nada.
     stringify():string{
         return this.nombre +" " +this.apellido1 +" " +this.apellido2 
     }
@@ -71,4 +72,24 @@ ruben.apellido2="Garcia";
 let ruben=new Persona("Ruben", "Gomez", "Garcia");
 let juan=new Persona("juan", "Navarro", "Lopez");
 console.log(ruben.stringify() +'\n' +juan.stringify());
+
+//Ejemplo de herencia en typescript
+//Una clase que extiende de otra
+class Ciudadano extends Persona {
+    identidad : string;
+    constructor(nombre:string, apellido1:string, apellido2:string, identidad:string){
+        //Ejecuta el constructor del padre
+        super(nombre, apellido1, apellido2);
+        this.identidad = identidad;
+    }
+
+    //Sobreescritura del metodo stringify del padre (la clase persona).
+    stringify(): string {
+        return super.stringify() + "  " +this.identidad;
+    }
+}
+
+var ciudadanoKane = new Ciudadano("Kane",null,null,"1");
+console.log(ciudadanoKane.stringify());
+
 
