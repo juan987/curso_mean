@@ -60,5 +60,76 @@ class Ciudadano extends Persona {
     }
 }
 var ciudadanoKane = new Ciudadano("Kane", null, null, "1");
-console.log(ciudadanoKane.stringify());
+console.log("Clase ciudadano: " + ciudadanoKane.stringify());
+//Polimorfismo
+var personaPolimorfismo = ciudadanoKane;
+//Pero en este caso al acceder al metodo stringify si accedea la variable identidad
+console.log("Polimorfismo de ciudadano a persona:  " + personaPolimorfismo.stringify());
+//Clase del 2 nov 2016
+class SerVivo {
+    constructor(clasificacion) {
+        this.clasificacion = clasificacion;
+        SerVivo.totalDeSeresVivos += 1;
+    }
+    stringify() {
+        return "Clasificacion: " + this.clasificacion;
+    }
+}
+SerVivo.totalDeSeresVivos = 0;
+let pez = new SerVivo("marino");
+let pez2 = new SerVivo("marino");
+let pez3 = new SerVivo("marino");
+let tigre = new SerVivo("terrestre");
+let leon = new SerVivo("terrestre");
+console.log("Ejemplo de static: Total de seres vivos =  " + SerVivo.totalDeSeresVivos);
+class Padre {
+}
+let padre = new Padre();
+padre.almacenPublico = 77;
+class HijoDePadre extends Padre {
+    constructor() {
+        super();
+        //Dentro de este heredero puedo acceder al almacen public y al protegido del padre
+        //pero no al private
+        this.almacenPublico = 33;
+        this.almacenProtegido = 88;
+    }
+}
+let hijoDelPadre = new HijoDePadre();
+//Una clase abstracta NO es instanciable. Solo se instancia a traves de los hijos
+class Ser {
+    constructor(clasificacion) {
+        this.clasificacion = clasificacion;
+        Ser.totalDeSeres += 1;
+    }
+    stringify() {
+        return "Clasificacion: " + this.clasificacion;
+    }
+}
+Ser.totalDeSeres = 0;
+//Como Politico extiende Ser, hay que implementar los metodos abstractos de ser
+class Politico extends Ser {
+    constructor() {
+        super("Cucaracha");
+    }
+    desplazamiento() {
+        return "En coche oficial";
+    }
+    alimentarse() {
+        return "Dame dinero en sobres!";
+    }
+}
+//No puedo definir un metodo abstract en una clase, por que una clase debe ser instanciable
+//Esto esta mal:
+/*
+class MiClase{
+    abstract miMetod();
+}
+*/
+//Funciones Lambda
+let funcionClasica = function (uno, dos) {
+    return uno + dos;
+};
+let funcionLambda = (uno, dos) => { return uno + dos; };
+console.log("Resultado de sumar 1 y 3 con lambda:  " + funcionLambda(1, 3));
 //# sourceMappingURL=app.js.map
