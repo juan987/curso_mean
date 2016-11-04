@@ -9,6 +9,7 @@ export class Ejemplo01NgforNgifComponent implements OnInit {
 
   variableDeInstancia : string;
   tomaArray : number[] = [1,2,3,4,5,6,7,8,9,99];
+  boolPrueba: boolean = true;
 
 
   constructor() {
@@ -17,5 +18,7 @@ export class Ejemplo01NgforNgifComponent implements OnInit {
 
   ngOnInit() {
   }
+  
 
 }
+
