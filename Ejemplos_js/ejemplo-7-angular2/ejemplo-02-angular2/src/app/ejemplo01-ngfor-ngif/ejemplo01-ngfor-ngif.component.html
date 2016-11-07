@@ -26,3 +26,28 @@
 <div *ngIf="boolPrueba">
   <p>Si evalua a true muestra el parrafo</p>
 </div>
+
+
+<!-- CLASE del Lunes 7-11-16  -->
+
+<!-- Ejemplo de click de boton, ejecuto la funcion cambiarEstadoInformacion -->
+<h1>Clase del lunes 7/11/16  </h1>
+<h1>Ejemplo de click de boton, ejecuto la funcion cambiarEstadoInformacion con ngIf </h1>
+<button (click)="cambiarEstadoInformacion()"> Mostrar Informacion</button>
+<ul *ngIf="mostrarInformacion">
+  <li> El boolena evalua a true </li>
+</ul>
+
+<h1>Muestra una lista con los componentes de tomaArray en el ts</h1>
+<ul>
+    <li *ngFor="let numero of tomaArray">
+      {{numero}}
+    </li>
+</ul>
+
+<h1>Usa ngStyle para colorear par o impar segun el valor del numero en tomaArray</h1>
+<ul>
+    <li *ngFor="let numero of tomaArray">
+      <span [ngStyle]="{color: colorEnPares(numero)}">{{numero}}</span>
+    </li>
+</ul>

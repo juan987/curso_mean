@@ -12,11 +12,28 @@ export class Ejemplo01NgforNgifComponent implements OnInit {
   boolPrueba: boolean = true;
 
 
+  mostrarInformacion: boolean = true;
+
+
   constructor() {
     this.variableDeInstancia = "Renderizado componente ngif ngfor!!!!!";
    }
 
   ngOnInit() {
+  }
+
+
+
+//
+  cambiarEstadoInformacion(): void {
+    this.mostrarInformacion = !this.mostrarInformacion;
+  }
+
+  colorEnPares(numero: number): string{
+    if((numero % 2) == 0){
+      return "blue";
+    }
+    return "red";
   }
   
 
