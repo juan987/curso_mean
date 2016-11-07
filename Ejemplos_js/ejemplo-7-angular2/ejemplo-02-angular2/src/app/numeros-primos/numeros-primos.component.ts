@@ -36,14 +36,21 @@ export class NumerosPrimosComponent implements OnInit {
     return numero % 3 == 0;
   }
 
-  colorEnDistintosEstados(){
 
-  }
 
   cambiarEstadoInformacion(): void {
     this.mostrarInformacion = !this.mostrarInformacion;
   }
 
+  colorEnDistintosEstados(numero: number):string{
+      if(this.esPrimo(numero)){
+        return "red";
+      } else if (this.esMultiploDeTres(numero)){
+        return "orange";
+      } else{
+        return "blue"; 
+      }
+  }
 
 /*
   colorEnPares(numero: number): string{

@@ -7,13 +7,15 @@ import { AppComponent } from './app.component';
 import { MiComponenteNuevoComponent } from './mi-componente-nuevo/mi-componente-nuevo.component';
 import { Ejemplo01NgforNgifComponent } from './ejemplo01-ngfor-ngif/ejemplo01-ngfor-ngif.component';
 import { NumerosPrimosComponent } from './numeros-primos/numeros-primos.component';
+import { NumerosPrimosConServicioComponent } from './numeros-primos-con-servicio/numeros-primos-con-servicio.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MiComponenteNuevoComponent,
     Ejemplo01NgforNgifComponent,
-    NumerosPrimosComponent
+    NumerosPrimosComponent,
+    NumerosPrimosConServicioComponent
   ],
   imports: [
     BrowserModule,
@@ -21,6 +23,7 @@ import { NumerosPrimosComponent } from './numeros-primos/numeros-primos.componen
     HttpModule
   ],
   providers: [],
-  bootstrap: [AppComponent, MiComponenteNuevoComponent, Ejemplo01NgforNgifComponent]
+  bootstrap: [AppComponent, MiComponenteNuevoComponent, Ejemplo01NgforNgifComponent, 
+      NumerosPrimosComponent,NumerosPrimosConServicioComponent]
 })
 export class AppModule { }
