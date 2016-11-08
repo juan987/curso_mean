@@ -1,0 +1,8 @@
+<h1>Componente buton </h1>
+
+<button (click)="cambiarEstadoInformacion()"> Mostrar Informacion</button>
+<ul *ngIf="mostrarInformacion">
+  <li> Numeros primos en <span style="color : red">ROJO</span> </li>
+  <li> Numeros divisibles por tres en <span style="color : orange">Orange</span> </li>
+  <li> Resto de numeros en <span style="color : blue">Azul</span> </li>
+</ul>
