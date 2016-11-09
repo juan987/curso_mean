@@ -10,7 +10,9 @@ import { NumerosPrimosService} from '../numeros-primos.service'
 export class NumerosPrimosPanelComponent implements OnInit {
 
 
-  listaFeNumeros: number[];
+  private listaFeNumeros: number[];
+
+  private mostrarInformacion: boolean = false;
 
   //Este es patron singleton
   constructor(private numerosPrimosService: NumerosPrimosService) { 
@@ -22,6 +24,20 @@ export class NumerosPrimosPanelComponent implements OnInit {
   }
 
 
+  tipoDeNumero(numero: number){
+      if(this.numerosPrimosService.esPrimo(numero)){
+        return "Es un numero primo";
+      } else if (this.numerosPrimosService.esMultiploDeTres(numero)){
+        return "es multiplo de 3";
+      } else{
+        return "No es nada de nada, pobrecillo"; 
+      }
+  }
+
+  eventoDeFilaRecibido(eventoRecibido: boolean){
+    this.mostrarInformacion = eventoRecibido;
+    console.log('Evento recibido:    ' +eventoRecibido);
+  }
 
 
 /*
