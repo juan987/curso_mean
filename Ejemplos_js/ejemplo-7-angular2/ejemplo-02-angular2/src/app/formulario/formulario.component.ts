@@ -21,7 +21,7 @@ libro: Libro;
 
   enviarFormulario(formulario: any){
     console.log("Estoy en metodo enviarFormulario");
-    console.log("Datos del formulario enviado"  +formulario);
+    console.log("Datos del formulario enviado"  +formulario.titulo);
     console.log("El libro es:  " +this.libro);
 
     this.libro.titulo = "Otro valor";
