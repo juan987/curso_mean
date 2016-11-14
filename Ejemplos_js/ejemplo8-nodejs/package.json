@@ -1,0 +1,21 @@
+{
+  "name": "ejemplos_de_dependencia_de_bl",
+  "version": "0.0.1",
+  "license": "MIT",
+  "angular-cli": {},
+  "scripts": {
+    "start": "ng serve",
+    "lint": "tslint \"src/**/*.ts\"",
+    "test": "ng test",
+    "pree2e": "webdriver-manager update",
+    "e2e": "protractor"
+  },
+  "private": true,
+  "dependencies": {
+    "bl": "^1.1.2"
+  },
+  "devDependencies": {},
+  "description": "ejemplo de modulo bl",
+  "main": "ejemplo-01-nodejs-base.js",
+  "author": "olonimu@gmail.com"
+}

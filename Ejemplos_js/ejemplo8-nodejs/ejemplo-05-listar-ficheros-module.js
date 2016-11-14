@@ -10,7 +10,8 @@ let path = require("path");
             }else{
                 console.log("Expresiones lambda");
                 ficheros = ficheros.filter((fichero)=>{
-                    return path.extname(fichero) == "." +extension;
+                    //return path.extname(fichero) === "." +extension;
+                    return path.extname(fichero) ===  extension;
                 });
 
                 callback(null,ficheros);
