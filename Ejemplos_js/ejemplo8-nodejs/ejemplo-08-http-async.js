@@ -19,7 +19,7 @@ function mostrarResultados(){
 
 function httpGet(indice){
     console.log("Comprobando   "   +urls[indice]);
-    http.get(urls[indice], (respuesta)=>{
+    http.get(urls[indice], (respuesta)=>{//lo asincrono esta en la respuesta
         respuesta.pipe(bl((error, datos) => {
             if(error){
                 console.error(error);
