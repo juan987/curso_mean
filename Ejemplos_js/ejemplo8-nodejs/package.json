@@ -12,7 +12,8 @@
   },
   "private": true,
   "dependencies": {
-    "bl": "^1.1.2"
+    "bl": "^1.1.2",
+    "through2-map": "^3.0.0"
   },
   "devDependencies": {},
   "description": "ejemplo de modulo bl",

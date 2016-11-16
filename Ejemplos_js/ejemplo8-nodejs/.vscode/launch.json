@@ -97,6 +97,25 @@
 
         {
             "type": "node",
+            "request": "launch",
+            "name": "ejemplo-11-http-UpperCasePost.js",
+            "program": "${workspaceRoot}/ejemplo-11-http-UpperCasePost.js",
+            "cwd": "${workspaceRoot}",
+            "args": []
+        },
+
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "ejemplo-12-json-server.js",
+            "program": "${workspaceRoot}/ejemplo-12-json-server.js",
+            "cwd": "${workspaceRoot}",
+            "args": []
+        },
+
+
+        {
+            "type": "node",
             "request": "attach",
             "name": "Asociar al proceso",
             "port": 5858
