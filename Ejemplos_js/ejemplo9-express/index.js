@@ -27,5 +27,17 @@ app.all('/paratodos', evaluaElVerboHttp);
 //Me coge cualquier verbo y la url puede tener cualquier cosa entre inicio y fin.
 app.all('/inicio*fin', evaluaElVerboHttp);
 
+//Path param
+app.get('/clientes/:idCliente/facturas/:idFactura', 
+            (request, response)=>{
+                //console.log('Resultados : ', request.params);
+                response.send('Resultados :  \n\tCliente: ' 
+                        +request.params.idCliente +"   \n\tFactura: "
+                         +request.params.idFactura
+                         +'\n' +JSON.stringify(request.params));
+            }
+            
+    );
+
 app.listen(8888);
 console.log('Servidor inicializado');
