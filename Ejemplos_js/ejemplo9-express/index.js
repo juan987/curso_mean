@@ -15,7 +15,7 @@ app.get("/",
         }
 );
 
-
+//En todos estos ejemplos, devuelvo texto en plano
 app.post('/', evaluaElVerboHttp);
 app.put('/', evaluaElVerboHttp);
 app.delete('/', evaluaElVerboHttp);
@@ -27,7 +27,7 @@ app.all('/paratodos', evaluaElVerboHttp);
 //Me coge cualquier verbo y la url puede tener cualquier cosa entre inicio y fin.
 app.all('/inicio*fin', evaluaElVerboHttp);
 
-//Path param
+//Path param, devuelvo texto en plano
 app.get('/clientes/:idCliente/facturas/:idFactura', 
             (request, response)=>{
                 //console.log('Resultados : ', request.params);
@@ -38,6 +38,36 @@ app.get('/clientes/:idCliente/facturas/:idFactura',
             }
             
     );
+
+
+//Para descargar una imagen
+//res.download('/report-12345.pdf')
+
+app.get('/save/:fichero.:extension', (request, response)=>{
+    response.send('Ahora genero un fichero de tipo : ' +
+                    request.params.extension);
+})
+
+//funcion intermedia, para concatenar manejadores
+//funcion intermedia es un handler
+function funcionIntermedia(request, response, next){
+    console.log('Ejecutado a las :  ' +new Date());
+    //netx ejecuta lo siguiente que hay en app.get('/concatenado.....')
+    next(); //esta siempre es la ultima linea
+}
+
+function funcionIntermediaFinal(request, response, next){
+    console.log('como no hay next, se para el flujo');
+    next(); //esta siempre es la ultima linea
+}
+
+app.get('/concatenado',
+        funcionIntermedia,
+        funcionIntermediaFinal,
+        (request, response)=>{
+            response.send('Enviado usando concatenado');
+        });
+
 
 app.listen(8888);
 console.log('Servidor inicializado');
