@@ -69,5 +69,27 @@ app.get('/concatenado',
         });
 
 
+//Para trabajar con rutas
+app.route('/rutaconjunta')
+    .get(evaluaElVerboHttp)
+    .post(evaluaElVerboHttp)
+    .put(evaluaElVerboHttp)
+    .delete(evaluaElVerboHttp);
+
+
+
+//para generar y organizar rutas
+//Al hacer app.use, ya no tengo que hacer:
+// app.get... 
+// o app.post
+    var router = express.Router();
+
+    //Con route.use ejecuto funcion intermedia antes de los get y post.
+    router.use(funcionIntermedia);
+    router.get('/conrouter', evaluaElVerboHttp);
+    router.post('/conrouterpost', evaluaElVerboHttp);
+    app.use("/cosacuca", router);
+
+
 app.listen(8888);
 console.log('Servidor inicializado');
