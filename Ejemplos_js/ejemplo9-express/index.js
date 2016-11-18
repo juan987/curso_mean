@@ -91,5 +91,48 @@ app.route('/rutaconjunta')
     app.use("/cosacuca", router);
 
 
+
+
+//Clase del 18 nov 16
+    var routerRest = express.Router();
+    routerRest.route("/coches")
+            .get((request, response)=>{
+                response.json([{ _id:1, marca:"opel", modelo:"corsa"}, {_id:2, marca:"audi", modelo:"A4"} ])
+            })
+            .post((request, response)=>{
+                //Recoge info del body para crear un nuevo coche 
+                // request.body.marca
+                // request.body.modelo
+                response.json({message:"creado"});
+            });
+
+
+        //Solicito un coche en particular
+        //agrego otra ruta en la variable routerRest
+    routerRest.route("/coches/:idCoche")
+            .get((request, response)=>{
+                //TODO: obtener el coche a partir de su idCoche
+                response.json({ _id:1, marca:"opel", modelo:"corsa"})
+            })
+            .delete((request, response)=>{
+                response.json({message:"borrado"});
+            })  
+            .put ((request, response)=>{
+                //TODO: Obtener el id y del body obtener marca y modelo
+                response.json({message:"actualizado"});
+                
+            });
+
+     app.use("/concesionario", routerRest);           
+        
+
+
+
 app.listen(8888);
 console.log('Servidor inicializado');
+
+/*
+   Response permite:
+   download() end() json() jsonp() redirect() render() send()
+   sendFile() sendStatus()
+*/
