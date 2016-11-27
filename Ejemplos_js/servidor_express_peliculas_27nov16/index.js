@@ -1,7 +1,42 @@
 //Servidor express de peliculas
 console.log("Hola, soy tu servidor JSON de peliculas");
 var express = require('express');
+var bodyParser = require('body-parser');//Lo uso en lineas 7 y 8
 var my_app_peliculas = express();
+
+//Sin esto no lee ni Json ni urlencoded
+//Ver request.body en web de express
+my_app_peliculas.use(bodyParser.json()); // for parsing application/json
+my_app_peliculas.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
+
+//Funcion para agregar peliculas
+function agregarNuevaPeli(peliNuevaJson){
+   let numPelisInArray = array_pelis.length;
+   console.log('hay ' +numPelisInArray +'  peliculas');
+   if(numPelisInArray == 0){
+       peliNuevaJson.id = 1;
+       //array_pelis.push(peliNuevaJson);
+   }else{
+       peliNuevaJson.id = numPelisInArray + 1;
+   }
+   array_pelis.push(peliNuevaJson);
+}
+
+//Funcion para insertar una peli modificada
+function modificarPeli(peliModificada){
+    for (let i = 0; i<array_pelis.length; i++){
+        console.log('id"s del array de pelis: ' +array_pelis[i].id);
+        if(array_pelis[i].id == peliModificada.id){
+            array_pelis[i] = peliModificada;
+            console.log('indice del array de pelis: ' +i +'\n'
+                        +peliModificada.id);
+            return i;
+            //break;
+        }
+    }
+}
+
+
 
 //Crear variable para rutas
 var routerRestPelis = express.Router();
@@ -9,20 +44,41 @@ var routerRestPelis = express.Router();
 routerRestPelis.route("/peliculas")
         .get((request, response)=>{
             //Para ver que llega en el request
-            console.log("Con coma en el console, Acceso a la ruta:  ", request);
+            //console.log("Con coma en el console, Acceso a la ruta:  ", request);
             //Estas dos console dan error
             //console.log("Con stringify      " +JSON.stringify(request));
             //console.log("Con stringify      " +JSON.parse(request));
             response.json(array_pelis)
         })
         .post((request, response)=>{
-            //Recoge info del body para crear un nuevo coche 
-            // request.body.marca
-            // request.body.modelo
+            //Recoge info del body para crear una nueva pelicula
+            //necesita el modulo body-parser
+            // request.body
+            // request.body.Key
             //Para ver que llega en el request
-            console.log("Con coma en el console, Acceso a la ruta:  ", request);
-            response.json({message:"nueva peli creada creada"});
+            console.log("Post: leo todo el json " ,request.body);
+            console.log("Post: solo leo un dato del json  " ,request.body.dato);
+            //console.log("Con coma en el console, Acceso a la ruta:  ", request);
+            agregarNuevaPeli(request.body);
+            //response.json({message:"nueva peli creada creada"});
+            //Devuelvo la peli insertada, con su id
+            response.json(array_pelis[array_pelis.length-1]);
         });
+
+routerRestPelis.route("/peliculas/:id")
+            .delete((request, response)=>{
+                response.json({message:"borrado"});
+            })  
+            .put ((request, response)=>{
+                //Modifica datos de una peli que ya existe
+                let resultado = modificarPeli(request.body);
+                if (resultado != undefined){
+                    response.json(array_pelis[resultado]);
+                }else{
+                    response.status(500).send('Esa peli no existe')
+                }
+                 
+            });
 
 my_app_peliculas.use("/", routerRestPelis); 
 
@@ -67,7 +123,7 @@ console.log('Servidor de peliculas inicializado');
 //Json inicial de peliculas
 let array_pelis = [
     {
-      "id": 4,
+      "id": 1,
       "titulo": "ewfew ",
       "director": "ffwerfw mod",
       "sinopsis": "wfwfwwf",
@@ -76,7 +132,7 @@ let array_pelis = [
       "booelanIsActive": false
     },
     {
-      "id": 6,
+      "id": 2,
       "titulo": "fv",
       "director": "fvf",
       "sinopsis": "fv",
@@ -85,7 +141,7 @@ let array_pelis = [
       "booelanIsActive": false
     },
     {
-      "id": 7,
+      "id": 3,
       "titulo": "eee",
       "director": "eeee",
       "sinopsis": "eeee",
@@ -94,7 +150,7 @@ let array_pelis = [
       "booelanIsActive": false
     },
     {
-      "id": 8,
+      "id": 4,
       "titulo": "rtwtrwtrw",
       "director": "twtwtwr",
       "sinopsis": "twwtwrtwtw",
@@ -103,7 +159,7 @@ let array_pelis = [
       "booelanIsActive": false
     },
     {
-      "id": 9,
+      "id": 5,
       "titulo": "trrrr mod",
       "director": "yttyu",
       "sinopsis": "uiuiii",
@@ -112,7 +168,7 @@ let array_pelis = [
       "booelanIsActive": false
     },
     {
-      "id": 10,
+      "id": 6,
       "titulo": "iiiii",
       "director": "iiiii",
       "sinopsis": "iiiii",
