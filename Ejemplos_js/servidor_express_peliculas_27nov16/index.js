@@ -17,10 +17,33 @@ function agregarNuevaPeli(peliNuevaJson){
        peliNuevaJson.id = 1;
        //array_pelis.push(peliNuevaJson);
    }else{
-       peliNuevaJson.id = numPelisInArray + 1;
+       //peliNuevaJson.id = numPelisInArray + 1;
+       peliNuevaJson.id = devuelveHigherPeliId() + 1;
    }
+
    array_pelis.push(peliNuevaJson);
 }
+
+
+function devuelveHigherPeliId(){
+    //var points = [40, 100, 1, 5, 25, 10];
+    //points.sort(function(a, b){return b - a});
+    // now points[0] contains the highest value
+
+    //Metodo para encontrar el valor mas alto de peli.id
+    //en el array de pelis
+
+    //Copio array_pelis en un nuevo array que uso para buscar
+    //el valor mas alto de peli.id
+    nuevo_array = array_pelis.slice(0)
+    nuevo_array.sort((a,b)=>{
+        return b.id - a.id
+    });
+    console.log('peli con el id mas alto: ' +nuevo_array[0].titulo
+                        +'\t'  +nuevo_array[0].id);
+    return nuevo_array[0].id;
+}
+
 
 //Funcion para insertar una peli modificada
 function modificarPeli(peliModificada){
@@ -36,6 +59,21 @@ function modificarPeli(peliModificada){
     }
 }
 
+//Funcion para borrar una peli
+function borrarPeli(peli){
+    for (let i = 0; i<array_pelis.length; i++){
+        //console.log('id"s del array de pelis: ' +array_pelis[i].id);
+        if(array_pelis[i].id == peli.id){
+            //No usar delete por que deja agujeros "null" en el array
+            //delete array_pelis[i];
+            array_pelis.splice(i,1);
+            console.log('borrar, indice del array de pelis: ' +i +'\t'
+                        +peli.id);
+            return i;
+            //break;
+        }
+    }
+}
 
 
 //Crear variable para rutas
@@ -67,7 +105,12 @@ routerRestPelis.route("/peliculas")
 
 routerRestPelis.route("/peliculas/:id")
             .delete((request, response)=>{
-                response.json({message:"borrado"});
+                let resultado = borrarPeli(request.body);
+                if (resultado != undefined){
+                    response.json({message:"peli borrada"});
+                }else{
+                    response.status(500).send('Borrar, Esa peli no existe')
+                }
             })  
             .put ((request, response)=>{
                 //Modifica datos de una peli que ya existe
