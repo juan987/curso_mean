@@ -26,7 +26,7 @@ var PeliSchema = new Schema(
 
 //Esto es generar la clase Pelicula, 
 //y "Pelicula" se convierte en la colleccion peliculas.
-var Pelicula = mongoose.model("Pelicula",LibroSchema);
+var Pelicula = mongoose.model("Pelicula",PeliSchema);
 
 
 /*
@@ -79,8 +79,31 @@ my_app_peliculas.use(bodyParser.json()); // for parsing application/json
 my_app_peliculas.use(bodyParser.urlencoded({ extended: true })); // for parsing application/x-www-form-urlencoded
 
 //Funcion para agregar peliculas
-function agregarNuevaPeli(peliNuevaJson){
-
+function agregarNuevaPeli(peliNuevaJson, response){
+    var nuevaPeli = new Pelicula({
+      "titulo": peliNuevaJson.titulo,
+      "director": peliNuevaJson.director,
+      "sinopsis": peliNuevaJson.sinopsis,
+      "fecha": peliNuevaJson.fecha,
+      "valoracion": peliNuevaJson.valoracion,
+    });
+    nuevaPeli.save((error, nuevaPeliAgregada)=>{
+        if(error){
+            response.status(500).send('Insert , Error al insertar nueva peli')
+            //console.log('%s %s is a %s.', person.name.first, person.name.last, person.occupation)
+            console.log('error al insertar nueva peli: ', error)
+        }else{
+            response.json(nuevaPeliAgregada)
+            console.log('Insertar peli nueva OK: ' ,data);
+            /*
+            Pelicula.findOne({"titulo":peliNuevaJson.titulo},(error,data)=>{
+                //Devuelve el nuevo doc insertado, incluyendo el _id
+                response.json(data)
+                console.log('Insertar peli nueva OK: ' ,data);
+            });
+            */
+        }
+    });
 }
 
 
@@ -88,9 +111,34 @@ function agregarNuevaPeli(peliNuevaJson){
 
 
 //Funcion para insertar una peli modificada
-function modificarPeli(peliModificada){
-
-}
+function modificarPeli(peliModificada, response){
+    Pelicula.findById(peliModificada._id, function (error, peli) {
+        if(error){
+            response.status(500).send('Update , Error al actualizar la peli')
+            //console.log('%s %s is a %s.', person.name.first, person.name.last, person.occupation)
+            console.log('Update , Error al actualizar la peli', error)
+        }else{
+         
+                peli.titulo = peliModificada.titulo,
+                peli.director = peliModificada.director,
+                peli.sinopsis = peliModificada.sinopsis,
+                peli.fecha = peliModificada.fecha,
+                peli.valoracion = peliModificada.valoracion,
+    
+                peli.save((error, peliActualizada)=>{
+                        if(error){
+                            response.status(500).send('Update , Error al actualizar la peli')
+                            //console.log('%s %s is a %s.', person.name.first, person.name.last, person.occupation)
+                            console.log('Update , Error al actualizar la peli', error)
+                        }else{
+                                //Devuelve el  doc actualizado, incluyendo el _id
+                                response.json(peliActualizada)
+                                console.log('Peli actualizada OK: ' ,peliActualizada);
+                        }
+                });//Fin de peli.save
+        }//Fin del else
+    });//Fin de Pelicula.findById
+}//Fin de function modificarPeli
 
 //Funcion para borrar una peli
 function borrarPeli(peli){
@@ -111,6 +159,7 @@ routerRestPelis.route("/peliculas")
             Pelicula.find((error,data)=>{
                 response.json(data)
                 console.log('Estoy dentro del else de save, find de libros: ' +data);
+
             });
 
         })
@@ -123,10 +172,10 @@ routerRestPelis.route("/peliculas")
             console.log("Post: leo todo el json " ,request.body);
             console.log("Post: solo leo un dato del json  " ,request.body.dato);
             //console.log("Con coma en el console, Acceso a la ruta:  ", request);
-            agregarNuevaPeli(request.body);
+            agregarNuevaPeli(request.body, response);
             //response.json({message:"nueva peli creada creada"});
             //Devuelvo la peli insertada, con su id
-            response.json(array_pelis[array_pelis.length-1]);
+            //response.json(array_pelis[array_pelis.length-1]);
         });
 
 routerRestPelis.route("/peliculas/:id")
@@ -140,13 +189,7 @@ routerRestPelis.route("/peliculas/:id")
             })  
             .put ((request, response)=>{
                 //Modifica datos de una peli que ya existe
-                let resultado = modificarPeli(request.body);
-                if (resultado != undefined){
-                    response.json(array_pelis[resultado]);
-                }else{
-                    response.status(500).send('Esa peli no existe')
-                }
-                 
+                modificarPeli(request.body, response);        
             });
 
 my_app_peliculas.use("/", routerRestPelis); 
