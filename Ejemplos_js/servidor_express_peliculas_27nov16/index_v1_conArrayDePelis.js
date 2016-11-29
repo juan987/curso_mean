@@ -1,69 +1,9 @@
-//Log de versiones: En clase el 29nov16
-//Pongo lo de ejemplo02schema, de ejemplo10m_mongoose
+
+//Primera version sin mongoose
 
 
 //Servidor express de peliculas
-console.log("Hola, soy tu servidor JSON de peliculas, "
-+"y ya tengo Mongoose!!!!!!");
-//Inicializacion de mongoose
-var mongoose = require('mongoose');
-mongoose.connect("mongodb://localhost:27017/test");
-
-//Definicion del esquema
-var Schema = mongoose.Schema;
-
-//esquema de libros
-var PeliSchema = new Schema(
-    {
-        id: String,
-        titulo: String,
-        director: String,
-        sinopsis: String,
-        fecha: Date,
-        valoracion: String,
-    }
-);
-
-//Esto es generar la clase Pelicula, 
-//y "Pelicula" se convierte en la colleccion peliculas.
-var Pelicula = mongoose.model("Pelicula",LibroSchema);
-
-
-/*
-Esto es un doc json de pelicula
-      "id": 1,
-      "titulo": "ewfew ",
-      "director": "ffwerfw mod",
-      "sinopsis": "wfwfwwf",
-      "fecha": "2016-11-13",
-      "valoracion": "Muy Buena",
-      "booelanIsActive": false
-*/
-
-var lotr = new Libro(
-    {
-        titulo:'Lord of the rings 2', 
-        campos_biblioteca:{
-            ultima_reserva : new Date()
-        }
-    }
-);
-
-//Guardo
-lotr.save(
-    (error)=>{
-    if(error){
-        console.error('Error al guardar: ', error);
-    }else{
-        console.log('libro guardado: ' +lotr._id);
-        Libro.find((error,data)=>{
-            console.log('Estoy dentro del else de save, find de libros: ' +data);
-        });
-    }
-}
-);
-
-//Fin de inicializacion de mongoose
+console.log("Hola, soy tu servidor JSON de peliculas");
 var express = require('express');
 var bodyParser = require('body-parser');//Lo uso en lineas 7 y 8
 var my_app_peliculas = express();
@@ -75,21 +15,68 @@ my_app_peliculas.use(bodyParser.urlencoded({ extended: true })); // for parsing 
 
 //Funcion para agregar peliculas
 function agregarNuevaPeli(peliNuevaJson){
+   let numPelisInArray = array_pelis.length;
+   console.log('hay ' +numPelisInArray +'  peliculas');
+   if(numPelisInArray == 0){
+       peliNuevaJson.id = 1;
+       //array_pelis.push(peliNuevaJson);
+   }else{
+       //peliNuevaJson.id = numPelisInArray + 1;
+       peliNuevaJson.id = devuelveHigherPeliId() + 1;
+   }
 
+   array_pelis.push(peliNuevaJson);
 }
 
 
+function devuelveHigherPeliId(){
+    //var points = [40, 100, 1, 5, 25, 10];
+    //points.sort(function(a, b){return b - a});
+    // now points[0] contains the highest value
 
+    //Metodo para encontrar el valor mas alto de peli.id
+    //en el array de pelis
+
+    //Copio array_pelis en un nuevo array que uso para buscar
+    //el valor mas alto de peli.id
+    nuevo_array = array_pelis.slice(0)
+    nuevo_array.sort((a,b)=>{
+        return b.id - a.id
+    });
+    console.log('peli con el id mas alto: ' +nuevo_array[0].titulo
+                        +'\t'  +nuevo_array[0].id);
+    return nuevo_array[0].id;
+}
 
 
 //Funcion para insertar una peli modificada
 function modificarPeli(peliModificada){
-
+    for (let i = 0; i<array_pelis.length; i++){
+        console.log('id"s del array de pelis: ' +array_pelis[i].id);
+        if(array_pelis[i].id == peliModificada.id){
+            array_pelis[i] = peliModificada;
+            console.log('indice del array de pelis: ' +i +'\n'
+                        +peliModificada.id);
+            return i;
+            //break;
+        }
+    }
 }
 
 //Funcion para borrar una peli
 function borrarPeli(peli){
-
+    for (let i = 0; i<array_pelis.length; i++){
+        //console.log('id"s del array de pelis: ' +array_pelis[i].id);
+        if(array_pelis[i].id == peli.id){
+            //No usar delete por que deja agujeros "null" en el array
+            //delete array_pelis[i];
+            array_pelis.splice(i,1);
+            console.log('borrar, indice del array de pelis: ' +i +'\t'
+                        +peli.id);
+            return i;
+            //break;
+        }
+    }
 }
 
 
@@ -103,11 +90,7 @@ routerRestPelis.route("/peliculas")
             //Estas dos console dan error
             //console.log("Con stringify      " +JSON.stringify(request));
             //console.log("Con stringify      " +JSON.parse(request));
-            Pelicula.find((error,data)=>{
-                response.json(data)
-                console.log('Estoy dentro del else de save, find de libros: ' +data);
-            });
-
+            response.json(array_pelis)
         })
         .post((request, response)=>{
             //Recoge info del body para crear una nueva pelicula
