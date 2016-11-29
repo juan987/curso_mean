@@ -40,6 +40,8 @@ Esto es un doc json de pelicula
       "booelanIsActive": false
 */
 
+
+/*
 var lotr = new Libro(
     {
         titulo:'Lord of the rings 2', 
@@ -50,6 +52,7 @@ var lotr = new Libro(
 );
 
 //Guardo
+
 lotr.save(
     (error)=>{
     if(error){
@@ -62,6 +65,8 @@ lotr.save(
     }
 }
 );
+
+*/
 
 //Fin de inicializacion de mongoose
 var express = require('express');
