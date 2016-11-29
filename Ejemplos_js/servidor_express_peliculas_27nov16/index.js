@@ -94,7 +94,7 @@ function agregarNuevaPeli(peliNuevaJson, response){
             console.log('error al insertar nueva peli: ', error)
         }else{
             response.json(nuevaPeliAgregada)
-            console.log('Insertar peli nueva OK: ' ,data);
+            console.log('Insertar peli nueva OK: ' ,nuevaPeliAgregada);
             /*
             Pelicula.findOne({"titulo":peliNuevaJson.titulo},(error,data)=>{
                 //Devuelve el nuevo doc insertado, incluyendo el _id
@@ -158,7 +158,7 @@ routerRestPelis.route("/peliculas")
             //console.log("Con stringify      " +JSON.parse(request));
             Pelicula.find((error,data)=>{
                 response.json(data)
-                console.log('Estoy dentro del else de save, find de libros: ' +data);
+                console.log('Estoy dentro del get, find de peliculas: ' ,data);
 
             });
 
@@ -180,12 +180,11 @@ routerRestPelis.route("/peliculas")
 
 routerRestPelis.route("/peliculas/:id")
             .delete((request, response)=>{
-                let resultado = borrarPeli(request.body);
-                if (resultado != undefined){
-                    response.json({message:"peli borrada"});
-                }else{
-                    response.status(500).send('Borrar, Esa peli no existe')
-                }
+                console.log('En delete pelicula ' +request.params.id.slice(3));
+                Pelicula.remove({ _id: request.params.id.slice(3) }, function (error) {
+                //Pelicula.remove({ _id:  JSON.stringify(request.params.id) }, function (error) {
+                    if(error) response.status(500).send('Delete , Error al borrar la peli');
+                });
             })  
             .put ((request, response)=>{
                 //Modifica datos de una peli que ya existe
