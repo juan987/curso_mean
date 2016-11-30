@@ -19,7 +19,8 @@ var PeliSchema = new Schema(
         titulo: String,
         director: String,
         sinopsis: String,
-        fecha: Date,
+        //fecha: Date,
+        fecha: String,
         valoracion: String,
     }
 );
@@ -72,6 +73,17 @@ lotr.save(
 var express = require('express');
 var bodyParser = require('body-parser');//Lo uso en lineas 7 y 8
 var my_app_peliculas = express();
+
+//************************************************************
+//Este use es necesario para activar CORS y evitar
+//errores del tipo: No 'Access-Control-Allow-Origin' , en la app cliente con angular.
+my_app_peliculas.use(function(req, res, next) {
+  res.header("Access-Control-Allow-Origin", "*");
+  res.setHeader('Access-Control-Allow-Methods', 'GET,PUT,POST,DELETE');
+  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+  next();
+});
+//************************************************************
 
 //Sin esto no lee ni Json ni urlencoded
 //Ver request.body en web de express
@@ -186,6 +198,8 @@ routerRestPelis.route("/peliculas/:id")
                 Pelicula.remove({ _id: request.params.id }, function (error) {
                 //Pelicula.remove({ _id:  JSON.stringify(request.params.id) }, function (error) {
                     if(error) response.status(500).send('Delete , Error al borrar la peli');
+                    //Tengo que responder con lo que sea, por que si no angular se queda medio colgado
+                    response.json({"peli":"borrada"});
                 });
             })  
             .put ((request, response)=>{
@@ -195,6 +209,8 @@ routerRestPelis.route("/peliculas/:id")
 
 my_app_peliculas.use("/", routerRestPelis); 
 
+
+/*
 //INICIO Clase del 18 nov 16
     var routerRest = express.Router();
     routerRest.route("/coches")
@@ -228,10 +244,11 @@ my_app_peliculas.use("/", routerRestPelis);
      my_app_peliculas.use("/concesionario", routerRest);           
         
 //FIN clase del 18 nov 16
+*/
 
 //Inicializar el server
-my_app_peliculas.listen(8888);
-//my_app_peliculas.listen(3000);
+//my_app_peliculas.listen(8888);
+my_app_peliculas.listen(3000);
 console.log('Servidor de peliculas inicializado');
 
 //Json inicial de peliculas
