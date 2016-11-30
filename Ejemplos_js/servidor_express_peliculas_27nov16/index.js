@@ -180,8 +180,10 @@ routerRestPelis.route("/peliculas")
 
 routerRestPelis.route("/peliculas/:id")
             .delete((request, response)=>{
-                console.log('En delete pelicula ' +request.params.id.slice(3));
-                Pelicula.remove({ _id: request.params.id.slice(3) }, function (error) {
+                //console.log('En delete pelicula ' +request.params.id.slice(3));
+                console.log('En delete pelicula ' +request.params.id);
+                //Pelicula.remove({ _id: request.params.id.slice(3) }, function (error) {
+                Pelicula.remove({ _id: request.params.id }, function (error) {
                 //Pelicula.remove({ _id:  JSON.stringify(request.params.id) }, function (error) {
                     if(error) response.status(500).send('Delete , Error al borrar la peli');
                 });
@@ -229,6 +231,7 @@ my_app_peliculas.use("/", routerRestPelis);
 
 //Inicializar el server
 my_app_peliculas.listen(8888);
+//my_app_peliculas.listen(3000);
 console.log('Servidor de peliculas inicializado');
 
 //Json inicial de peliculas
