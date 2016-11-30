@@ -24,8 +24,18 @@
             "sourceMaps": true
         },
 
-
+        {
+            "type": "node",
+            "request": "launch",
+            "name": "ejemplo03statics",
+            "program": "${workspaceRoot}\\ejemplo03statics.js",
+            "cwd": "${workspaceRoot}",
+            "outFiles": [],
+            "sourceMaps": true
+        },
         
+
+
         {
             "type": "node",
             "request": "attach",

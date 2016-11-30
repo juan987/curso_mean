@@ -20,6 +20,9 @@ var LibroSchema = new Schema(
     }
 );
 
+//En tiempo real puedo modificar el esquema
+LibroSchema.add({estado: String});
+
 //Esto es como generar la clase Libro, 
 //y "Libro" se convierte en la colleccion libros, la misma del ejemplo01base
 var Libro = mongoose.model("Libro",LibroSchema);
