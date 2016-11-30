@@ -60,7 +60,19 @@ A nivel de instancia en mongoose:
 A nivel de clase
     count
     findOne
+    findById
     findOneAndUpdate  //es ACID
-    findOneAndDelete  //es ACID  
+    findOneAndDelete  //es ACID 
+    insertMany 
+    update 
 
 */
+
+Libro.findById("583d505a598cc811e0d88862", (error,libro)=>{
+    if (error){
+        log.error('Error al procesar la busqueda con find ID')
+    }else{
+        console.log('\n Libro encontrado con find by id: ' +libro)
+      
+    }
+});
