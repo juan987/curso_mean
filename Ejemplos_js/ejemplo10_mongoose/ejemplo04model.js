@@ -21,4 +21,4 @@ var LibroSchema = new Schema(
     }
 );
 
-module.export = mongoose.model("Libro", LibroSchema);
+module.exports = mongoose.model("Libro", LibroSchema);
