@@ -9,6 +9,6 @@ export const AppRoutes: Routes = [
     {path : '', redirectTo: 'listar', pathMatch:'full'},
     //Cuando llega a la vista listar, le digo que muestreel componente ListaLibrosComponent
     {path: 'listar', component : ListaLibrosComponent},
-    {path: 'consultar', component : ConsultaLibroComponent},
+    {path: 'consultar/:id', component : ConsultaLibroComponent},
     {path: 'formulario', component : FormularioLibroComponent},
 ]

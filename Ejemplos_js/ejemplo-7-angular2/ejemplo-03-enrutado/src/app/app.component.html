@@ -2,5 +2,13 @@
   {{title}}
 </h1>
 
+<ul>
+  <li><a [routerLink]="['listar']">Lista de libros</a></li>
+  <li><a [routerLink]="['consultar', title]">Consulta de libros</a></li>
+  <li><a [routerLink]="['formulario']">Formularios de libros</a></li>
+</ul>
+
+
+
 <!--  Esta etiqueta de router-outlet es la que cambia segun las rutas definidas en app.routes.ts -->
 <router-outlet></router-outlet>
