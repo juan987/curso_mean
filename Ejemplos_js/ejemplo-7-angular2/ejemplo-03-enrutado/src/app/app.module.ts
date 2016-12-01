@@ -3,16 +3,32 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
+//Agrego esto a mano
+import { RouterModule } from '@angular/router';
+
 import { AppComponent } from './app.component';
+import { ListaLibrosComponent } from './lista-libros/lista-libros.component';
+import { ConsultaLibroComponent } from './consulta-libro/consulta-libro.component';
+import { FormularioLibroComponent } from './formulario-libro/formulario-libro.component';
+
+
+//Agrego esto a mano
+import { AppRoutes } from './app.routes';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ListaLibrosComponent,
+    ConsultaLibroComponent,
+    FormularioLibroComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule
+    HttpModule,
+
+    //Agrego esto a mano
+    RouterModule.forRoot(AppRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]
