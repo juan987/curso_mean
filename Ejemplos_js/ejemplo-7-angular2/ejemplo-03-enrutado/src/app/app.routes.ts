@@ -10,5 +10,6 @@ export const AppRoutes: Routes = [
     //Cuando llega a la vista listar, le digo que muestreel componente ListaLibrosComponent
     {path: 'listar', component : ListaLibrosComponent},
     {path: 'consultar/:id', component : ConsultaLibroComponent},
-    {path: 'formulario/:id', component : FormularioLibroComponent},
+    //{path: 'formulario/:id', component : FormularioLibroComponent},
+    {path: 'formulario', component : FormularioLibroComponent},
 ]

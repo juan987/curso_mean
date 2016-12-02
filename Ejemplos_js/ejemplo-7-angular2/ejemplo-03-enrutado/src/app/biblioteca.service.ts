@@ -34,7 +34,7 @@ export class BibliotecaService {
                     //Como lo hice en peliculas angular 2
                     //.map(this.extractData)
                     .map((response: Response) => {
-                      return response.json;
+                      return response.json();
                     })
                     //Como lo hice en peliculas angular 2    
                     //.catch(this.handleError);
@@ -50,6 +50,24 @@ export class BibliotecaService {
   private handleError (error: Response | any) {
       console.log('Error al procesar la peticion');
       return Observable.throw(error.json().error || "Error de servidor)");
+  }
+
+
+  addLibro(body: Object): Observable<Libro>{
+      let miLibroEnString = JSON.stringify(body);
+      //El stringify me hace
+      // "{id:null, titulo:"lo que sea"}"
+      let miCabecera = new Headers({'Content-type':'application/json'});
+      let options = new RequestOptions({headers:miCabecera});
+
+      return this.http.post(this.url, miLibroEnString, options)
+                      .map((response:Response)=> {
+                        console.log('Llego la respuesta del Post')
+                        return response.json})
+                      .catch((error: any) =>{
+                      console.log('Error al procesar la peticion');
+                      return Observable.throw(error.json().error || "Error de servidor)");
+                    });
   }
 
 }//fin de la clase

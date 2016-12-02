@@ -1,8 +1,22 @@
 <p>
   lista-libros works!
+</p>  
   <tr *ngFor="let libro of libros" >
-    <td> Id del libro: {{libro.id}} <br/> Titulo del libro: {{libro.titulo}} - <a [routerLink]="['/consultar',libro.id]">
+    <td> Id del libro: {{libro.id}} 
+      Titulo del libro: {{libro.titulo}} - <a [routerLink]="['/consultar',libro.id]">
       Consultar libro
-      </a></td>
+      </a></td><br/>
   </tr>
-</p>
+
+
+<br/>
+  <ul >
+    <li *ngFor="let libro of libros">
+      Id del libro: {{libro.id}} 
+      Titulo del libro: {{libro.titulo}} - <a [routerLink]="['/consultar',libro.id]">
+      Consultar libro
+      </a>
+    </li>
+  
+  </ul>
+

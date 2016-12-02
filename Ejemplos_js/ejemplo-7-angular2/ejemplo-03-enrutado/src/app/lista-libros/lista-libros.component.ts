@@ -19,6 +19,7 @@ export class ListaLibrosComponent implements OnInit {
     //this.libros = [new Libro(1, "hhh"), new Libro(2, 'pppp')];
     //Me subscribo al map y al error, que devuelven un array de json o un mensaje de error
     this.service.getLibros().subscribe((datos)=>{
+        console.log('OK el get de la lista de libros')
         this.libros = datos;
     },
     (error)=>{
