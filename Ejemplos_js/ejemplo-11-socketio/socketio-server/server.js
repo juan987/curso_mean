@@ -30,10 +30,16 @@ io.on('connection', (socket)=>{
 
         //Si el servidor quiere emitir al usuario:
         //En este caso esto es un echo desde el server de sockets
+        //al cliente especifico que envio el mensaje:
         socket.emit('mando-un-mensaje', 'Echo desde el server:  ' +mensaje);
         
-        //como hacer broadcast con io para que le llegue a todos los clientes conectados
-        io.emit('mando-un-mensaje', mensaje);
+        //En este caso, como hacer broadcast con io para que le llegue a todos los clientes conectados,
+        //incluyendo al que envio el mensaje original:
+        io.emit('mando-un-mensaje', mensaje);//broadcast a todos
+
+        //otra forma de hacer broadcast a todos menos a mi mismo ( el usuario
+        //que envio el mensaje):
+        socket.broadcast.emit('mando-un-mensaje', mensaje);//broadcast a todos menos a mi, el emisor del mensaje.
     });//Fin del io.on 'mando-un-mensaje'
 });//Fin del io.on connection
 
