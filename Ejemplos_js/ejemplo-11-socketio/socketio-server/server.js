@@ -48,7 +48,7 @@ io.on('connection', (socket)=>{
         //Si el servidor quiere emitir al usuario:
         //En este caso esto es un echo desde el server de sockets
         //al cliente especifico que envio el mensaje:
-        socket.emit('mando-un-mensaje', 'Echo desde el server:  ' +mensaje);
+        socket.emit('mando-un-mensaje', mensaje);
         
         //En este caso, como hacer broadcast con io para que le llegue a todos los clientes conectados,
         //incluyendo al que envio el mensaje original:
