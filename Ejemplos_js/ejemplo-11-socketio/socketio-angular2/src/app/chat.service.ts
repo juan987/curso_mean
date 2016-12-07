@@ -10,7 +10,16 @@ import {Message} from './message' //Estamos al mismo nivel
 @Injectable()
 export class ChatService {
 
-  private url: string = 'http://localhost:3000'
+  private url: string = 'http://localhost:3000';
+
+
+
+
+  private urlChat: string = 'http://localhost:3000/chat';
+  private urlOtro: string = 'http://localhost:3000/otro';
+  private urlFin: string = 'http://localhost:3000/fin';
+
+
   private socket;
 
 
@@ -32,8 +41,9 @@ export class ChatService {
         this.socket.on('connect', ()=>{//Evento: escucho el evento connect
           console.log('Cliente conectado con id: ' +this.socket.id)
         });//Evento de conexion connect
-        //Mensajes que recibo
+        //Mensajes que recibo, estoy oyendo continuamente
         this.socket.on('mando-un-mensaje', (datos)=>{
+          console.log('Escuchando.....')
           //Next es lo que se ejecuta al subscribirme en chat.components.ts
           observer.next(datos);
         });

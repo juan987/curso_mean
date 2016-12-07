@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 
 import {ChatService} from '../chat.service';
@@ -19,6 +19,7 @@ export class ChatComponent implements OnInit, OnDestroy {
 
 
   sendMessage(){
+      console.log('Mensaje a enviar por el cliente: ' +this.message);
       this.service.sendMessage(this.message);
   }
 
