@@ -69,5 +69,6 @@ io.on('disconnect', (socket)=> {
 http.listen(3000);
 console.log('Estoy escuchandio en 3000');
 
+// Ok, el 7 de diciembre 16
 
 
