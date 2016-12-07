@@ -38,7 +38,7 @@ export class ChatComponent implements OnInit, OnDestroy {
         this.messages.push(newMessage);
       }
     )//Fin derl subscribe
-  }
+  }//Fin del ngOnInit
 
   ngOnDestroy(){
     this.connection.unsubscribe();
