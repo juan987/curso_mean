@@ -207,6 +207,20 @@ routerRestPelis.route("/peliculas/:id")
                 modificarPeli(request.body, response);        
             });
 
+
+//Ruta para el http del autocomplete
+routerRestPelis.route("/peliculas/autocomplete/:text")
+        .get((request, response)=>{
+
+            console.log('En GET DE autocomplete, patron de busqueda ' +request.params.id);
+            Pelicula.find({titulo: new RegExp(request.params.id, 'i')}, (error,data)=>{
+                response.json(data)
+                console.log('Estoy dentro del get del AUTOCOMPLETE, find de peliculas: ' ,data);
+
+            });
+
+        })            
+
 my_app_peliculas.use("/", routerRestPelis); 
 
 
