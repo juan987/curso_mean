@@ -212,14 +212,41 @@ routerRestPelis.route("/peliculas/:id")
 routerRestPelis.route("/peliculas/autocomplete/:text")
         .get((request, response)=>{
 
-            console.log('En GET DE autocomplete, patron de busqueda ' +request.params.id);
-            Pelicula.find({titulo: new RegExp(request.params.text, 'i')}, (error,data)=>{
+            console.log('En GET DE autocomplete, patron de busqueda ' +request.params.text);
+            //Busqueda por reg expression solo por titulo
+            //Pelicula.find({titulo: new RegExp(request.params.text, 'i')}, (error,data)=>{
+
+            //Busqueda por titulo o por director
+            Pelicula.find({$or:[{titulo: new RegExp(request.params.text, 'i')},
+                            {director: new RegExp(request.params.text, 'i')}]}
+                                , (error,data)=>{
+                if(error) { 
+                    response.status(500).send('Autocomplete , Error en get de autocomplete');
+                    console.log('Estoy dentro del get del AUTOCOMPLETE, ERROR ' ,error);
+                }else{
+                    response.json(data)
+                    console.log('Estoy dentro del get del AUTOCOMPLETE, find de peliculas: ' ,data);
+                }
+
+            });//fin del find
+
+        });//Fin del get de autocomplete/:text
+
+//Ruta para el http del autocomplete cuando no tiene patron de busqueda(:text)
+//Devuelve un array vacio
+routerRestPelis.route("/peliculas/autocomplete/")
+        .get((request, response)=>{
+
+            console.log('En GET DE autocomplete, patron de busqueda undefined' +request.params.text);
+
+                //Devuelvo un array vacio
+                let data= [];
                 response.json(data)
-                console.log('Estoy dentro del get del AUTOCOMPLETE, find de peliculas: ' ,data);
+                console.log('Estoy dentro del get del AUTOCOMPLETE undefined, find de peliculas: ' ,data);
 
-            });
+            //});//fin del get
 
-        })            
+        });//Fin del roter de autocomplete/:text             
 
 my_app_peliculas.use("/", routerRestPelis); 
 
