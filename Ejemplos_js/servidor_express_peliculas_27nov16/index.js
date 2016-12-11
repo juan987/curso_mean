@@ -305,14 +305,6 @@ my_app_peliculas.use("/", routerRestPelis);
 io.on('connection',(socket)=>{
     console.log("Cliente conectado!!");
 
-    /*
-    //Para mostrar cuando alguien se acaba de conectar
-    socket.on('connect',(socket)=>{
-        console.log("Informo de una persona que se acaba de conectar : ",mensaje);
-        //nuevomensaje.content = socket.id;
-        socket.broadcast.emit('conection',socket.id);// todos menos yo!  
-    });//Fin para mostrar un nuevo conectado
-    */
     socket.on('mando-un-mensaje',(mensaje)=>{
         console.log("Mensaje recibido : ",mensaje);
         sockets.push(socket); 
@@ -324,6 +316,14 @@ io.on('connection',(socket)=>{
         
         io.emit('mando-un-mensaje',mensaje);// a todos
         //socket.broadcast.emit('mando-un-mensaje',mensaje);// todos menos yo!  
+    });
+
+    //Para informar cuando alguien ha modificado la base de datos de peliculas
+    socket.on('db-modificada',(mensaje)=>{
+        console.log("DB modificada : ",mensaje);
+        mensaje.user = socket.id;
+        io.emit('db-modificada',mensaje);// a todos
+        //socket.broadcast.emit('db-modificada',mensaje);// todos menos yo!  
     });
 });
 io.on('disconnect',(socket)=>{
