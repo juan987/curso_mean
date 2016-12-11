@@ -78,6 +78,7 @@ var my_app_peliculas = express();
 var http = require('http').Server(my_app_peliculas);
 var io = require('socket.io')(http);
 var sockets = [];
+var nuevomensaje = {user: "nadie", content: "ninguno"};
 //Para que funcione cors con el chat
 io.origins('http://localhost:4200');
 //Fin de variable para el chat, 11 dic 16
@@ -304,6 +305,14 @@ my_app_peliculas.use("/", routerRestPelis);
 io.on('connection',(socket)=>{
     console.log("Cliente conectado!!");
 
+    /*
+    //Para mostrar cuando alguien se acaba de conectar
+    socket.on('connect',(socket)=>{
+        console.log("Informo de una persona que se acaba de conectar : ",mensaje);
+        //nuevomensaje.content = socket.id;
+        socket.broadcast.emit('conection',socket.id);// todos menos yo!  
+    });//Fin para mostrar un nuevo conectado
+    */
     socket.on('mando-un-mensaje',(mensaje)=>{
         console.log("Mensaje recibido : ",mensaje);
         sockets.push(socket); 
@@ -311,9 +320,9 @@ io.on('connection',(socket)=>{
         if(sockets.length > 3){
             sockets[3].emit('mando-un-mensaje',{user:"tu mismo",content:"Solo para ti"});
         } 
-        socket.emit('mando-un-mensaje',mensaje); // yo 
+        //socket.emit('mando-un-mensaje',mensaje); // yo 
         
-        //io.emit('mando-un-mensaje',mensaje);// a todos
+        io.emit('mando-un-mensaje',mensaje);// a todos
         //socket.broadcast.emit('mando-un-mensaje',mensaje);// todos menos yo!  
     });
 });
