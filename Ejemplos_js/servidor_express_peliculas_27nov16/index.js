@@ -307,8 +307,12 @@ io.on('connection',(socket)=>{
 
     socket.on('mando-un-mensaje',(mensaje)=>{
         console.log("Mensaje recibido : ",mensaje);
-        sockets.push(socket); 
-        mensaje.user = socket.id;
+        //Esto es solo para usarlo en el disconnect, abajo
+        nuevomensaje.user = mensaje.user;
+        //Fin del asunto disconnect
+        sockets.push(socket);
+        //El nombre de usuario ya viene en el mensaje 
+        //mensaje.user = socket.id;
         if(sockets.length > 3){
             sockets[3].emit('mando-un-mensaje',{user:"tu mismo",content:"Solo para ti"});
         } 
@@ -321,13 +325,25 @@ io.on('connection',(socket)=>{
     //Para informar cuando alguien ha modificado la base de datos de peliculas
     socket.on('db-modificada',(mensaje)=>{
         console.log("DB modificada : ",mensaje);
-        mensaje.user = socket.id;
+        //El nombre de usuario ya viene en el mensaje 
+        //mensaje.user = socket.id;
         io.emit('db-modificada',mensaje);// a todos
         //socket.broadcast.emit('db-modificada',mensaje);// todos menos yo!  
     });
+
+    //Avisar al resto de una desconexion
+    socket.on('disconnect', function(){
+        console.log("Cliente desconectado!!");
+        nuevomensaje.content = "Se ha desconectado";
+    socket.broadcast.emit('mando-un-mensaje', nuevomensaje);
+    });
+
 });
+
+//No consigo que aparezca este mensaje, no se cuando ocurre esto.
+//Pero con socket.on('disconnect', function(){ arriba, FUNCIONA!!
 io.on('disconnect',(socket)=>{
-    console.log("Cliente desconectado!!")
+    console.log("Cliente desconectado 2!!");
 });
 //******************************************
 //      FIN de Chat con socketio, 11Dic16
