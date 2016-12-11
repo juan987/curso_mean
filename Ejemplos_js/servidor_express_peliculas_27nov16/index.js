@@ -74,6 +74,14 @@ var express = require('express');
 var bodyParser = require('body-parser');//Lo uso en lineas 7 y 8
 var my_app_peliculas = express();
 
+//Variables globales para el chat con socketio, 11dic16
+var http = require('http').Server(my_app_peliculas);
+var io = require('socket.io')(http);
+var sockets = [];
+//Para que funcione cors con el chat
+io.origins('http://localhost:4200');
+//Fin de variable para el chat, 11 dic 16
+
 //************************************************************
 //Este use es necesario para activar CORS y evitar
 //errores del tipo: No 'Access-Control-Allow-Origin' , en la app cliente con angular.
@@ -287,12 +295,45 @@ my_app_peliculas.use("/", routerRestPelis);
 //FIN clase del 18 nov 16
 */
 
-//Inicializar el server
-//my_app_peliculas.listen(8888);
-my_app_peliculas.listen(3000);
-console.log('Servidor de peliculas inicializado');
 
-//Json inicial de peliculas
+//******************************************
+//      Chat con socketio, 11Dic16
+//******************************************
+// Por defecto tenemos ya namespace
+// http://localhost:3000/socket.io
+io.on('connection',(socket)=>{
+    console.log("Cliente conectado!!");
+
+    socket.on('mando-un-mensaje',(mensaje)=>{
+        console.log("Mensaje recibido : ",mensaje);
+        sockets.push(socket); 
+        mensaje.user = socket.id;
+        if(sockets.length > 3){
+            sockets[3].emit('mando-un-mensaje',{user:"tu mismo",content:"Solo para ti"});
+        } 
+        socket.emit('mando-un-mensaje',mensaje); // yo 
+        
+        //io.emit('mando-un-mensaje',mensaje);// a todos
+        //socket.broadcast.emit('mando-un-mensaje',mensaje);// todos menos yo!  
+    });
+});
+io.on('disconnect',(socket)=>{
+    console.log("Cliente desconectado!!")
+});
+//******************************************
+//      FIN de Chat con socketio, 11Dic16
+//******************************************
+
+//Inicializar el server, asi lo hacia solo con las pelis.
+//my_app_peliculas.listen(3000);
+//console.log('Servidor de peliculas inicializado');
+
+//Asi lo inicializo para pelis y chat
+http.listen(3000,()=>{
+    console.log("Servidor de pelis y chat iniciado en *:3000");
+});
+
+//Json inicial de peliculas, no lo uso, USO mongoose con mongodb.
 let array_pelis = [
     {
       "id": 1,
