@@ -1,0 +1,16 @@
+{
+  "name": "ejemplo01_basic_passport",
+  "version": "1.0.0",
+  "description": "ejemplo basico de passport",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Juan Navarro",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.14.0",
+    "passport": "^0.3.2",
+    "passport-http": "^0.3.0"
+  }
+}
