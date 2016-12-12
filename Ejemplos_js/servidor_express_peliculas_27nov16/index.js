@@ -310,12 +310,24 @@ io.on('connection',(socket)=>{
         //Esto es solo para usarlo en el disconnect, abajo
         nuevomensaje.user = mensaje.user;
         //Fin del asunto disconnect
+
+        //Guado los sockets en un array
+        //Hay un socket por cada usuario conectado
         sockets.push(socket);
-        //El nombre de usuario ya viene en el mensaje 
+        //El nombre de usuario ya viene en el mensaje, despues que el usuario a 
+        //tecleado su nombre en el chat cliente 
         //mensaje.user = socket.id;
+        
+        
+        //Este mensaje se envia a partir del cuarto usuario conectado.
+        //LO desabilito
+        /*
         if(sockets.length > 3){
             sockets[3].emit('mando-un-mensaje',{user:"tu mismo",content:"Solo para ti"});
         } 
+        */
+
+
         //socket.emit('mando-un-mensaje',mensaje); // yo 
         
         io.emit('mando-un-mensaje',mensaje);// a todos
@@ -338,7 +350,7 @@ io.on('connection',(socket)=>{
     socket.broadcast.emit('mando-un-mensaje', nuevomensaje);
     });
 
-});
+});//Fin del io.on('connection',(socket)=>{
 
 //No consigo que aparezca este mensaje, no se cuando ocurre esto.
 //Pero con socket.on('disconnect', function(){ arriba, FUNCIONA!!
