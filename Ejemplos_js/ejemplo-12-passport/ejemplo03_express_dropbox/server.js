@@ -41,7 +41,7 @@ passport.use(new DropboxStrategy(
     {//Estos datos son para acceder a la api de dropbox
         consumerKey:'gbvhcgckbjp4nbd',
         consumerSecret: 'h28mm0fjalb02e0',
-        callbackUrl: 'http://localhost:8080/home' //Dropbox devuelve el resultado aqui
+        callbackURL: 'http://localhost:8080/passport' //Dropbox devuelve el resultado aqui
     },
     (token, tokenSecret, profile, next)=>{
         console.log("Perfil de dropbox devuelto por dropbox: ", profile);
@@ -64,3 +64,5 @@ passport.use(new DropboxStrategy(
 app.get("/passport", passport.authenticate('dropbox'),(request,response)=>{
     response.send("La autenticacion contra dropbox ha sido correcta");
 });
+
+app.listen(8080);
