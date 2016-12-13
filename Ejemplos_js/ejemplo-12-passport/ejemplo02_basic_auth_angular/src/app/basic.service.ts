@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Http, Response, Headers, RequestOptions } from '@angular/http';
 import {Observable} from 'rxjs';
-import 'rxrj/add/operator/map'
-import 'rxrj/add/operator/catch'
+import 'rxjs/add/operator/map'
+import 'rxjs/add/operator/catch'
 
 @Injectable()
 export class BasicService {
@@ -15,7 +15,7 @@ export class BasicService {
       let username = "luis";
       let password = "luis";
       let opcionesDeRequest = new RequestOptions({headers:cabeceraDeSeguridad});
-      cabeceraDeSeguridad.append('Authorization', "Basic " + username +":" +password )
+      cabeceraDeSeguridad.append('Authorization', "Basic " +btoa( username +":" +password) );
 
       return this.http.get('http://127.0.0.1:8080/home', opcionesDeRequest)//NO usar localhost:8080!!!!
       
